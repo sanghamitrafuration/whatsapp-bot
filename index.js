@@ -24,6 +24,9 @@ require('dotenv').config();
 app.listen(process.env.PORT || 1337, () => console.log(`webhook is listening: port ${process.env.PORT || 1337}`));
 
 // Accepts POST requests at /webhook endpoint
+app.get("/", (req, res)=>{
+    res.send("hello");
+})
 app.post("/webhook", (req, res) => {
   // Parse the request body from the POST
   let body = req.body;
