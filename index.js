@@ -13,65 +13,118 @@
 const token = process.env.WHATSAPP_TOKEN;
 
 // Imports dependencies and set up http server
-const express = require("express"),
+const request = require("request"),
+  express = require("express"),
   body_parser = require("body-parser"),
   axios = require("axios").default,
   app = express().use(body_parser.json()); // creates express http server
-  
-require('dotenv').config();
 
 // Sets server port and logs message on success
-app.listen(process.env.PORT || 1337, () => console.log(`webhook is listening: port ${process.env.PORT || 1337}`));
+app.listen(process.env.PORT || 1337, () => console.log("webhook is listening"));
 
 // Accepts POST requests at /webhook endpoint
-app.get("/", (req, res)=>{
-    res.send("hello");
-})
-app.post("/webhook", (req, res) => {
+app.post("/webhook", async(req, res) => {
   // Parse the request body from the POST
-  let body = req.body;
+  try{
+      let body = req.body;
 
-  // Check the Incoming webhook message
-  console.log(JSON.stringify(req.body, null, 2));
+    // Check the Incoming webhook message
+    console.log(JSON.stringify(req.body, null, 2));
 
-  // info on WhatsApp text message payload: htt
-  ps://developers.facebook.com/docs/whatsapp/cloud-api/webhooks/payload-examples#text-messages
-  if (req.body.object) {
-    if (
-      req.body.entry &&
-      req.body.entry[0].changes &&
-      req.body.entry[0].changes[0] &&
-      req.body.entry[0].changes[0].value.messages &&
-      req.body.entry[0].changes[0].value.messages[0]
-    ) {
-      let phone_number_id =
-        req.body.entry[0].changes[0].value.metadata.phone_number_id;
-      let from = req.body.entry[0].changes[0].value.messages[0].from; // extract the phone number from the webhook payload
-      let msg_body = req.body.entry[0].changes[0].value.messages[0].text.body; // extract the message text from the webhook payload
-      if(msg_body=="Hi" || msg_body=="hi" || msg_body=="Hey" || msg_body=="hey"){
-        msg_body="welcome to furation tech"
-      }else{
-        msg_body="Please click on https://www.furation.tech/"
+    // info on WhatsApp text message payload: https://developers.facebook.com/docs/whatsapp/cloud-api/webhooks/payload-examples#text-messages
+    if (req.body.object) {
+      if (
+        req.body.entry &&
+        req.body.entry[0].changes &&
+        req.body.entry[0].changes[0] &&
+        req.body.entry[0].changes[0].value.messages &&
+        req.body.entry[0].changes[0].value.messages[0]
+      ) {
+        let phone_number_id =
+          req.body.entry[0].changes[0].value.metadata.phone_number_id;
+        let from = req.body.entry[0].changes[0].value.messages[0].from;// extract the phone number from the webhook payload
+        let msg_body = req.body.entry[0].changes[0].value.messages[0].text.body; // extract the message text from the webhook payload
+        console.log(req.body.entry[0].changes[0].value.messages[0], "req.body.entry[0].changes[0].value.messages[0]")
+        if(msg_body=="Hi" || msg_body=="hi" || msg_body=="Hey" || msg_body=="hey"){
+          msg_body="Welcome to Furation tech"
+        }else{
+          msg_body="For more info. please click on https://www.furation.tech/"
+        }
+        axios({
+          method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+          url:
+            "https://graph.facebook.com/v12.0/" +
+            phone_number_id +
+            "/messages?access_token=" +
+            token,
+          data: {
+            messaging_product: "whatsapp",
+            to: from,
+            text: {
+              body: msg_body
+            },
+            type: "interactive",
+            interactive: {
+              type: "button",
+              body: {
+                // text: "Select the option"
+                text: msg_body
+              },
+              action: {
+                buttons: [
+                  {
+                    type: "reply",
+                    reply: {
+                      id: "UNIQUE_BUTTON_ID_1",
+                      title: "About Location"
+                    }
+                  },
+                  {
+                    type: "reply",
+                    reply: {
+                      id: "UNIQUE_BUTTON_ID_2",
+                      title: "About Service"
+                    }
+                  }
+                ]
+              }
+            }
+            // type: "location",
+            // location: {
+            //  longitude: 72.8777,
+            //  latitude: 19.0760,
+            //  name: "LOCATION_NAME",
+            //  address: "LOCATION_ADDRESS"
+            // },
+          
+            
+//             type: "interactive",
+//             interactive: {
+//               type: "list",
+//               header: {
+//                 type: "text",
+//                 text: "HEADER_TEXT"
+//               },
+//               body: {
+//                 text: "BODY_TEXT"
+//               },
+//               footer: {
+//                 text: "FOOTER_TEXT"
+//               }},
+          },
+          headers: { "Content-Type": "application/json" },
+          
+        })
+         
       }
-      axios({
-        method: "POST", // Required, HTTP method, a string, e.g. POST, GET
-        url:
-          "https://graph.facebook.com/v12.0/" +
-          phone_number_id +
-          "/messages?access_token=" +
-          token,
-        data: {
-          messaging_product: "whatsapp",
-          to: from,
-          text: { body: "Sur: " + "how may i help you" },
-        },
-        headers: { "Content-Type": "application/json" },
-      });
+      res.sendStatus(200);
+    } else {
+      // Return a '404 Not Found' if event is not from a WhatsApp API
+      res.sendStatus(404);
     }
-    res.sendStatus(200);
-  } else {
-    // Return a '404 Not Found' if event is not from a WhatsApp API
-    res.sendStatus(404);
+  }
+  catch(error){
+    console.log(error)
   }
 });
 
@@ -82,10 +135,9 @@ app.get("/webhook", (req, res) => {
    * UPDATE YOUR VERIFY TOKEN
    *This will be the Verify Token value when you set up webhook
   **/
+  
   const verify_token = process.env.VERIFY_TOKEN;
-
-  console.log(req.query);
-
+console.log(req.query, "Welcome")
   // Parse params from the webhook verification request
   let mode = req.query["hub.mode"];
   let token = req.query["hub.verify_token"];
@@ -101,10 +153,6 @@ app.get("/webhook", (req, res) => {
     } else {
       // Responds with '403 Forbidden' if verify tokens do not match
       res.sendStatus(403);
-      console.log(mode, token);
     }
-  }else {
-    console.log(mode, token, challenge, req.query);
   }
 });
-console.log("Hello Webhook");
