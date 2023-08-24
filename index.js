@@ -116,109 +116,110 @@ app.post("/webhook", async(req, res) => {
         })
          
       }
-    } else if (
-      body.entry[0].changes[0].value.messages[0].interactive &&
-      body.entry[0].changes[0].value.messages[0].interactive.button_reply &&
-      body.entry[0].changes[0].value.messages[0].interactive.button_reply.id
-    ){
-        let phone_number_id =
-        body.entry[0].changes[0].value.metadata.phone_number_id;
-        let from = body.entry[0].changes[0].value.messages[0].from;// extract the phone number from the webhook payload
-        let msg_body = body.entry[0].changes[0].value.messages[0].text.body; // extract the message text from the webhook payload
-        console.log(body.entry[0].changes[0].value.messages[0], "body.entry[0].changes[0].value.messages[0]")
-
-        if(body.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_1"){
-          axios({
-            method: "POST", // Required, HTTP method, a string, e.g. POST, GET
-            url:
-              "https://graph.facebook.com/v12.0/" +
-              phone_number_id +
-              "/messages?access_token=" +
-              token,
-            data: {
-              messaging_product: "whatsapp",
-              to: from,
-              text: {
-                body: msg_body
-              },
-              type: "interactive",
-              interactive: {
-                type: "button",
-                body: {
-                  // text: "Select the option"
-                  text: msg_body
+      else if (
+        body.entry[0].changes[0].value.messages[0].interactive &&
+        body.entry[0].changes[0].value.messages[0].interactive.button_reply &&
+        body.entry[0].changes[0].value.messages[0].interactive.button_reply.id
+      ){
+          let phone_number_id =
+          body.entry[0].changes[0].value.metadata.phone_number_id;
+          let from = body.entry[0].changes[0].value.messages[0].from;// extract the phone number from the webhook payload
+          let msg_body = body.entry[0].changes[0].value.messages[0].text.body; // extract the message text from the webhook payload
+          console.log(body.entry[0].changes[0].value.messages[0], "body.entry[0].changes[0].value.messages[0]")
+  
+          if(body.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_1"){
+            axios({
+              method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+              url:
+                "https://graph.facebook.com/v12.0/" +
+                phone_number_id +
+                "/messages?access_token=" +
+                token,
+              data: {
+                messaging_product: "whatsapp",
+                to: from,
+                text: {
+                  body: msg_body
                 },
-                action: {
-                  buttons: [
-                    {
-                      type: "reply",
-                      reply: {
-                        id: "UNIQUE_BUTTON_ID_3",
-                        title: "Live Location"
+                type: "interactive",
+                interactive: {
+                  type: "button",
+                  body: {
+                    // text: "Select the option"
+                    text: msg_body
+                  },
+                  action: {
+                    buttons: [
+                      {
+                        type: "reply",
+                        reply: {
+                          id: "UNIQUE_BUTTON_ID_3",
+                          title: "Live Location"
+                        }
+                      },
+                      {
+                        type: "reply",
+                        reply: {
+                          id: "UNIQUE_BUTTON_ID_4",
+                          title: "Current Location"
+                        }
                       }
-                    },
-                    {
-                      type: "reply",
-                      reply: {
-                        id: "UNIQUE_BUTTON_ID_4",
-                        title: "Current Location"
-                      }
-                    }
-                  ]
+                    ]
+                  }
                 }
-              }
-            },
-            headers: { "Content-Type": "application/json" },
-            
-          })
+              },
+              headers: { "Content-Type": "application/json" },
+              
+            })
+            res.sendStatus(200);
+          }else {
+            axios({
+              method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+              url:
+                "https://graph.facebook.com/v12.0/" +
+                phone_number_id +
+                "/messages?access_token=" +
+                token,
+              data: {
+                messaging_product: "whatsapp",
+                to: from,
+                text: {
+                  body: msg_body
+                },
+                type: "interactive",
+                interactive: {
+                  type: "button",
+                  body: {
+                    // text: "Select the option"
+                    text: msg_body
+                  },
+                  action: {
+                    buttons: [
+                      {
+                        type: "reply",
+                        reply: {
+                          id: "UNIQUE_BUTTON_ID_5",
+                          title: "Website"
+                        }
+                      },
+                      {
+                        type: "reply",
+                        reply: {
+                          id: "UNIQUE_BUTTON_ID_6",
+                          title: "Mobile App"
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              headers: { "Content-Type": "application/json" },
+              
+            })
+          }
           res.sendStatus(200);
-        }else {
-          axios({
-            method: "POST", // Required, HTTP method, a string, e.g. POST, GET
-            url:
-              "https://graph.facebook.com/v12.0/" +
-              phone_number_id +
-              "/messages?access_token=" +
-              token,
-            data: {
-              messaging_product: "whatsapp",
-              to: from,
-              text: {
-                body: msg_body
-              },
-              type: "interactive",
-              interactive: {
-                type: "button",
-                body: {
-                  // text: "Select the option"
-                  text: msg_body
-                },
-                action: {
-                  buttons: [
-                    {
-                      type: "reply",
-                      reply: {
-                        id: "UNIQUE_BUTTON_ID_5",
-                        title: "Website"
-                      }
-                    },
-                    {
-                      type: "reply",
-                      reply: {
-                        id: "UNIQUE_BUTTON_ID_6",
-                        title: "Mobile App"
-                      }
-                    }
-                  ]
-                }
-              }
-            },
-            headers: { "Content-Type": "application/json" },
-            
-          })
-        }
-        res.sendStatus(200);
-
+  
+      }
     } else {
       // Return a '404 Not Found' if event is not from a WhatsApp API
       res.sendStatus(404);
