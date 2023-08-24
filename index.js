@@ -199,6 +199,114 @@ app.post("/webhook", async(req, res) => {
               headers: { "Content-Type": "application/json" },
               
             })
+          }else if(body.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_3") {
+            console.log("UNIQUE_BUTTON_ID_2", "About Service")
+            axios({
+              method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+              url:
+                "https://graph.facebook.com/v12.0/" +
+                phone_number_id +
+                "/messages?access_token=" +
+                token,
+              data: {
+                messaging_product: "whatsapp",
+                to: from,
+                text: {
+                  body: msg_body
+                },
+                type: "interactive",
+                interactive: {
+                  type: "button",
+                  body: {
+                    // text: "Select the option"
+                    text: "We will contact you regarding Live Location"
+                  }
+                }
+              },
+              headers: { "Content-Type": "application/json" },
+              
+            })
+          }else if(body.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_4") {
+            console.log("UNIQUE_BUTTON_ID_2", "About Service")
+            axios({
+              method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+              url:
+                "https://graph.facebook.com/v12.0/" +
+                phone_number_id +
+                "/messages?access_token=" +
+                token,
+              data: {
+                messaging_product: "whatsapp",
+                to: from,
+                text: {
+                  body: msg_body
+                },
+                type: "interactive",
+                interactive: {
+                  type: "button",
+                  body: {
+                    // text: "Select the option"
+                    text: "We will contact you regarding Current Location"
+                  }
+                }
+              },
+              headers: { "Content-Type": "application/json" },
+              
+            })
+          }else if(body.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_5") {
+            console.log("UNIQUE_BUTTON_ID_2", "About Service")
+            axios({
+              method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+              url:
+                "https://graph.facebook.com/v12.0/" +
+                phone_number_id +
+                "/messages?access_token=" +
+                token,
+              data: {
+                messaging_product: "whatsapp",
+                to: from,
+                text: {
+                  body: msg_body
+                },
+                type: "interactive",
+                interactive: {
+                  type: "button",
+                  body: {
+                    // text: "Select the option"
+                    text: "We will contact you regarding Website Service"
+                  }
+                }
+              },
+              headers: { "Content-Type": "application/json" },
+              
+            })
+          }else if(body.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_6") {
+            console.log("UNIQUE_BUTTON_ID_2", "About Service")
+            axios({
+              method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+              url:
+                "https://graph.facebook.com/v12.0/" +
+                phone_number_id +
+                "/messages?access_token=" +
+                token,
+              data: {
+                messaging_product: "whatsapp",
+                to: from,
+                text: {
+                  body: msg_body
+                },
+                type: "interactive",
+                interactive: {
+                  type: "button",
+                  body: {
+                    // text: "Select the option"
+                    text: "We will contact you regarding Mobile app"
+                  }
+                }
+              },
+              headers: { "Content-Type": "application/json" },
+              
+            })
           }
           res.sendStatus(200);
   
