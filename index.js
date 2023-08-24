@@ -28,6 +28,7 @@ app.post("/webhook", async(req, res) => {
       let body = req.body;
 
     // Check the Incoming webhook message
+    console.log(JSON.stringify(body, null, 2));
 
     // info on WhatsApp text message payload: https://developers.facebook.com/docs/whatsapp/cloud-api/webhooks/payload-examples#text-messages
     if (body.object) {
@@ -37,7 +38,8 @@ app.post("/webhook", async(req, res) => {
         body.entry[0].changes[0] &&
         body.entry[0].changes[0].value.messages &&
         body.entry[0].changes[0].value.messages[0] &&
-        body.entry[0].changes[0].value.messages[0].type!="interactive"
+        body.entry[0].changes[0].value.messages[0].type==="text"
+    
       ) {
         let phone_number_id =
         body.entry[0].changes[0].value.metadata.phone_number_id;
@@ -58,65 +60,44 @@ app.post("/webhook", async(req, res) => {
             token,
           data: {
             messaging_product: "whatsapp",
-            to: from,
-            text: {
-              body: msg_body
-            },
-            type: "interactive",
-            interactive: {
-              type: "button",
-              body: {
-                // text: "Select the option"
-                text: msg_body
-              },
-              action: {
-                buttons: [
-                  {
-                    type: "reply",
-                    reply: {
-                      id: "UNIQUE_BUTTON_ID_1",
-                      title: "About Location"
-                    }
+                to: from,
+                text: {
+                  body: msg_body
+                },
+                type: "interactive",
+                interactive: {
+                  type: "button",
+                  body: {
+                    // text: "Select the option"
+                    text: msg_body
                   },
-                  {
-                    type: "reply",
-                    reply: {
-                      id: "UNIQUE_BUTTON_ID_2",
-                      title: "About Service"
-                    }
+                  action: {
+                    buttons: [
+                      {
+                        type: "reply",
+                        reply: {
+                          id: "UNIQUE_BUTTON_ID_1",
+                          title: "About Location"
+                        }
+                      },
+                      {
+                        type: "reply",
+                        reply: {
+                          id: "UNIQUE_BUTTON_ID_2",
+                          title: "About Service"
+                        }
+                      }
+                    ]
                   }
-                ]
-              }
-            }
-            // type: "location",
-            // location: {
-            //  longitude: 72.8777,
-            //  latitude: 19.0760,
-            //  name: "LOCATION_NAME",
-            //  address: "LOCATION_ADDRESS"
-            // },
-          
-            
-//             type: "interactive",
-//             interactive: {
-//               type: "list",
-//               header: {
-//                 type: "text",
-//                 text: "HEADER_TEXT"
-//               },
-//               body: {
-//                 text: "BODY_TEXT"
-//               },
-//               footer: {
-//                 text: "FOOTER_TEXT"
-//               }},
+                }
           },
           headers: { "Content-Type": "application/json" },
           
-        })
+        }).then(res=>console.log(res))
+        .catch(err=>console.log(err))
          
-      }
-      else if (
+      } else if (
+        body.entry[0].changes[0].value.messages[0].type==="interactive" &&
         body.entry[0].changes[0].value.messages[0].interactive &&
         body.entry[0].changes[0].value.messages[0].interactive.button_reply &&
         body.entry[0].changes[0].value.messages[0].interactive.button_reply.id
@@ -124,10 +105,11 @@ app.post("/webhook", async(req, res) => {
           let phone_number_id =
           body.entry[0].changes[0].value.metadata.phone_number_id;
           let from = body.entry[0].changes[0].value.messages[0].from;// extract the phone number from the webhook payload
-          let msg_body = body.entry[0].changes[0].value.messages[0].text.body; // extract the message text from the webhook payload
-          console.log(body.entry[0].changes[0].value.messages[0], "body.entry[0].changes[0].value.messages[0]")
+          let msg_body = body.entry[0].changes[0].value.messages[0].interactive.button_reply.title; // extract the message text from the webhook payload
+          console.log(body.entry[0].changes[0].value.messages[0].interactive.button_reply.title, "body.entry[0].changes[0].value.messages[0].interactive.button_reply.title")
   
           if(body.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_1"){
+            console.log("UNIQUE_BUTTON_ID_1", "About Location")
             axios({
               method: "POST", // Required, HTTP method, a string, e.g. POST, GET
               url:
@@ -172,7 +154,8 @@ app.post("/webhook", async(req, res) => {
               
             })
             res.sendStatus(200);
-          }else {
+          }else if(body.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_2") {
+            console.log("UNIQUE_BUTTON_ID_2", "About Service")
             axios({
               method: "POST", // Required, HTTP method, a string, e.g. POST, GET
               url:
@@ -220,7 +203,9 @@ app.post("/webhook", async(req, res) => {
           res.sendStatus(200);
   
       }
-    } else {
+
+     }
+    else {
       // Return a '404 Not Found' if event is not from a WhatsApp API
       res.sendStatus(404);
     }
