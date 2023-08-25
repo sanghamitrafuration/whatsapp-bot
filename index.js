@@ -39,7 +39,6 @@ app.post("/webhook", async(req, res) => {
         body.entry[0].changes[0].value.messages &&
         body.entry[0].changes[0].value.messages[0] &&
         body.entry[0].changes[0].value.messages[0].type==="text"
-    
       ) {
         let phone_number_id =
         body.entry[0].changes[0].value.metadata.phone_number_id;
@@ -48,54 +47,15 @@ app.post("/webhook", async(req, res) => {
         console.log(body.entry[0].changes[0].value.messages[0], "body.entry[0].changes[0].value.messages[0]")
         if(msg_body=="Hi" || msg_body=="hi" || msg_body=="Hey" || msg_body=="hey"){
           msg_body="Welcome to Furation tech"
-        }else{
-          msg_body="For more info. please click on https://www.furation.tech/"
+          welcomeMessageButtons(phone_number_id, msg_body, from);
+        }else if(msg_body=="Ok" || msg_body=="ok"){
+          msg_body= "Thank you for contacting us"
+          okresponse(phone_number_id, from, msg_body);
         }
-        axios({
-          method: "POST", // Required, HTTP method, a string, e.g. POST, GET
-          url:
-            "https://graph.facebook.com/v12.0/" +
-            phone_number_id +
-            "/messages?access_token=" +
-            token,
-          data: {
-            messaging_product: "whatsapp",
-                to: from,
-                text: {
-                  body: msg_body
-                },
-                type: "interactive",
-                interactive: {
-                  type: "button",
-                  body: {
-                    // text: "Select the option"
-                    text: msg_body
-                  },
-                  action: {
-                    buttons: [
-                      {
-                        type: "reply",
-                        reply: {
-                          id: "UNIQUE_BUTTON_ID_1",
-                          title: "About Location"
-                        }
-                      },
-                      {
-                        type: "reply",
-                        reply: {
-                          id: "UNIQUE_BUTTON_ID_2",
-                          title: "About Service"
-                        }
-                      }
-                    ]
-                  }
-                }
-          },
-          headers: { "Content-Type": "application/json" },
-          
-        }).then(res=>console.log(res))
-        .catch(err=>console.log(err))
-         
+        else{
+          msg_body="For more info. please click on https://www.furation.tech/"
+          welcomeMessageButtons(phone_number_id, msg_body, from);
+        }
       } else if (
         body.entry[0].changes[0].value.messages[0].type==="interactive" &&
         body.entry[0].changes[0].value.messages[0].interactive &&
@@ -109,209 +69,22 @@ app.post("/webhook", async(req, res) => {
           console.log(body.entry[0].changes[0].value.messages[0].interactive.button_reply.title, "body.entry[0].changes[0].value.messages[0].interactive.button_reply.title")
   
           if(body.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_1"){
-            console.log("UNIQUE_BUTTON_ID_1", "About Location")
-            axios({
-              method: "POST", // Required, HTTP method, a string, e.g. POST, GET
-              url:
-                "https://graph.facebook.com/v12.0/" +
-                phone_number_id +
-                "/messages?access_token=" +
-                token,
-              data: {
-                messaging_product: "whatsapp",
-                to: from,
-                text: {
-                  body: msg_body
-                },
-                type: "interactive",
-                interactive: {
-                  type: "button",
-                  body: {
-                    // text: "Select the option"
-                    text: msg_body
-                  },
-                  action: {
-                    buttons: [
-                      {
-                        type: "reply",
-                        reply: {
-                          id: "UNIQUE_BUTTON_ID_3",
-                          title: "Live Location"
-                        }
-                      },
-                      {
-                        type: "reply",
-                        reply: {
-                          id: "UNIQUE_BUTTON_ID_4",
-                          title: "Current Location"
-                        }
-                      }
-                    ]
-                  }
-                }
-              },
-              headers: { "Content-Type": "application/json" },
-              
-            })
-            res.sendStatus(200);
+            buttonId1Response(phone_number_id, from, msg_body);
           }else if(body.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_2") {
-            console.log("UNIQUE_BUTTON_ID_2", "About Service")
-            axios({
-              method: "POST", // Required, HTTP method, a string, e.g. POST, GET
-              url:
-                "https://graph.facebook.com/v12.0/" +
-                phone_number_id +
-                "/messages?access_token=" +
-                token,
-              data: {
-                messaging_product: "whatsapp",
-                to: from,
-                text: {
-                  body: msg_body
-                },
-                type: "interactive",
-                interactive: {
-                  type: "button",
-                  body: {
-                    // text: "Select the option"
-                    text: msg_body
-                  },
-                  action: {
-                    buttons: [
-                      {
-                        type: "reply",
-                        reply: {
-                          id: "UNIQUE_BUTTON_ID_5",
-                          title: "Website"
-                        }
-                      },
-                      {
-                        type: "reply",
-                        reply: {
-                          id: "UNIQUE_BUTTON_ID_6",
-                          title: "Mobile App"
-                        }
-                      }
-                    ]
-                  }
-                }
-              },
-              headers: { "Content-Type": "application/json" },
-              
-            })
+            buttonId2Response(phone_number_id, from, msg_body);
           }else if(body.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_3") {
-            console.log("UNIQUE_BUTTON_ID_2", "About Service")
-            axios({
-              method: "POST", // Required, HTTP method, a string, e.g. POST, GET
-              url:
-                "https://graph.facebook.com/v12.0/" +
-                phone_number_id +
-                "/messages?access_token=" +
-                token,
-              data: {
-                messaging_product: "whatsapp",
-                to: from,
-                text: {
-                  body: msg_body
-                },
-                type: "interactive",
-                interactive: {
-                  type: "button",
-                  body: {
-                    // text: "Select the option"
-                    text: "We will contact you regarding Live Location"
-                  }
-                }
-              },
-              headers: { "Content-Type": "application/json" },
-              
-            })
+            buttonId3Response(phone_number_id, from, msg_body);
           }else if(body.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_4") {
-            console.log("UNIQUE_BUTTON_ID_2", "About Service")
-            axios({
-              method: "POST", // Required, HTTP method, a string, e.g. POST, GET
-              url:
-                "https://graph.facebook.com/v12.0/" +
-                phone_number_id +
-                "/messages?access_token=" +
-                token,
-              data: {
-                messaging_product: "whatsapp",
-                to: from,
-                text: {
-                  body: msg_body
-                },
-                type: "interactive",
-                interactive: {
-                  type: "button",
-                  body: {
-                    // text: "Select the option"
-                    text: "We will contact you regarding Current Location"
-                  }
-                }
-              },
-              headers: { "Content-Type": "application/json" },
-              
-            })
+            buttonId4Response(phone_number_id, from, msg_body);
           }else if(body.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_5") {
-            console.log("UNIQUE_BUTTON_ID_2", "About Service")
-            axios({
-              method: "POST", // Required, HTTP method, a string, e.g. POST, GET
-              url:
-                "https://graph.facebook.com/v12.0/" +
-                phone_number_id +
-                "/messages?access_token=" +
-                token,
-              data: {
-                messaging_product: "whatsapp",
-                to: from,
-                text: {
-                  body: msg_body
-                },
-                type: "interactive",
-                interactive: {
-                  type: "button",
-                  body: {
-                    // text: "Select the option"
-                    text: "We will contact you regarding Website Service"
-                  }
-                }
-              },
-              headers: { "Content-Type": "application/json" },
-              
-            })
+            buttonId5Response(phone_number_id, from, msg_body);
           }else if(body.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_6") {
-            console.log("UNIQUE_BUTTON_ID_2", "About Service")
-            axios({
-              method: "POST", // Required, HTTP method, a string, e.g. POST, GET
-              url:
-                "https://graph.facebook.com/v12.0/" +
-                phone_number_id +
-                "/messages?access_token=" +
-                token,
-              data: {
-                messaging_product: "whatsapp",
-                to: from,
-                text: {
-                  body: msg_body
-                },
-                type: "interactive",
-                interactive: {
-                  type: "button",
-                  body: {
-                    // text: "Select the option"
-                    text: "We will contact you regarding Mobile app"
-                  }
-                }
-              },
-              headers: { "Content-Type": "application/json" },
-              
-            })
+            buttonId6Response(phone_number_id, from, msg_body);
+          }else{
+            noresponse(phone_number_id, from, msg_body);
           }
           res.sendStatus(200);
-  
       }
-
      }
     else {
       // Return a '404 Not Found' if event is not from a WhatsApp API
@@ -351,3 +124,261 @@ app.get("/webhook", (req, res) => {
     }
   }
 });
+
+const welcomeMessageButtons= (phone_number_id, msg_body, from) => {
+  axios({
+    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+    url:
+      "https://graph.facebook.com/v12.0/" +
+      phone_number_id +
+      "/messages?access_token=" +
+      token,
+    data: {
+      messaging_product: "whatsapp",
+          to: from,
+          text: {
+            body: msg_body
+          },
+          type: "interactive",
+          interactive: {
+            type: "button",
+            body: {
+              // text: "Select the option"
+              text: msg_body
+            },
+            action: {
+              buttons: [
+                {
+                  type: "reply",
+                  reply: {
+                    id: "UNIQUE_BUTTON_ID_1",
+                    title: "About Location"
+                  }
+                },
+                {
+                  type: "reply",
+                  reply: {
+                    id: "UNIQUE_BUTTON_ID_2",
+                    title: "About Service"
+                  }
+                }
+              ]
+            }
+          }
+    },
+    headers: { "Content-Type": "application/json" },
+    
+  }).then(res=>console.log(res))
+  .catch(err=>console.log(err))
+}
+
+const buttonId1Response= (phone_number_id, from, msg_body) => {
+  axios({
+    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+    url:
+      "https://graph.facebook.com/v12.0/" +
+      phone_number_id +
+      "/messages?access_token=" +
+      token,
+    data: {
+      messaging_product: "whatsapp",
+      to: from,
+      text: {
+        body: msg_body
+      },
+      type: "interactive",
+      interactive: {
+        type: "button",
+        body: {
+          // text: "Select the option"
+          text: msg_body
+        },
+        action: {
+          buttons: [
+            {
+              type: "reply",
+              reply: {
+                id: "UNIQUE_BUTTON_ID_3",
+                title: "Live Location"
+              }
+            },
+            {
+              type: "reply",
+              reply: {
+                id: "UNIQUE_BUTTON_ID_4",
+                title: "Current Location"
+              }
+            }
+          ]
+        }
+      }
+    },
+    headers: { "Content-Type": "application/json" },
+    
+  })
+}
+
+const buttonId2Response= (phone_number_id, from, msg_body) => {
+  axios({
+    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+    url:
+      "https://graph.facebook.com/v12.0/" +
+      phone_number_id +
+      "/messages?access_token=" +
+      token,
+    data: {
+      messaging_product: "whatsapp",
+      to: from,
+      text: {
+        body: msg_body
+      },
+      type: "interactive",
+      interactive: {
+        type: "button",
+        body: {
+          // text: "Select the option"
+          text: msg_body
+        },
+        action: {
+          buttons: [
+            {
+              type: "reply",
+              reply: {
+                id: "UNIQUE_BUTTON_ID_5",
+                title: "Website"
+              }
+            },
+            {
+              type: "reply",
+              reply: {
+                id: "UNIQUE_BUTTON_ID_6",
+                title: "Mobile App"
+              }
+            }
+          ]
+        }
+      }
+    },
+    headers: { "Content-Type": "application/json" },
+  })
+}
+
+const buttonId3Response= (phone_number_id, from, msg_body) => {
+  axios({
+    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+    url:
+      "https://graph.facebook.com/v12.0/" +
+      phone_number_id +
+      "/messages?access_token=" +
+      token,
+    data: {
+      messaging_product: "whatsapp",
+      to: from,
+      type: "text",
+      text: { // the text object
+        body: "We will contact you regarding Live Location"
+      }
+    },
+    headers: { "Content-Type": "application/json" },
+  })
+}
+
+const buttonId4Response= (phone_number_id, from, msg_body) => {
+  axios({
+    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+    url:
+      "https://graph.facebook.com/v12.0/" +
+      phone_number_id +
+      "/messages?access_token=" +
+      token,
+    data: {
+      messaging_product: "whatsapp",
+      to: from,
+      type: "text",
+      text: { // the text object
+        body: "We will contact you regarding Current Location"
+      }
+    },
+    headers: { "Content-Type": "application/json" },
+  })
+}
+
+const buttonId5Response= (phone_number_id, from, msg_body) => {
+  axios({
+    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+    url:
+      "https://graph.facebook.com/v12.0/" +
+      phone_number_id +
+      "/messages?access_token=" +
+      token,
+    data: {
+      messaging_product: "whatsapp",
+      to: from,
+      type: "text",
+      text: { // the text object
+        body: "We will contact you regarding Website Service"
+      }
+    },
+    headers: { "Content-Type": "application/json" },
+  })
+}
+
+const buttonId6Response= (phone_number_id, from, msg_body) => {
+  axios({
+    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+    url:
+      "https://graph.facebook.com/v12.0/" +
+      phone_number_id +
+      "/messages?access_token=" +
+      token,
+    data: {
+      messaging_product: "whatsapp",
+      to: from,
+      type: "text",
+      text: { // the text object
+        body: "We will contact you regarding Mobile app"
+      }
+    },
+    headers: { "Content-Type": "application/json" },
+  })
+}
+
+const noresponse= (phone_number_id, from, msg_body) => {
+  axios({
+    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+    url:
+      "https://graph.facebook.com/v12.0/" +
+      phone_number_id +
+      "/messages?access_token=" +
+      token,
+    data: {
+      messaging_product: "whatsapp",
+      to: from,
+      type: "text",
+      text: { // the text object
+        body: "We will contact you"
+      }
+    },
+    headers: { "Content-Type": "application/json" },
+  })
+}
+
+const okresponse= (phone_number_id, from, msg_body) => {
+  axios({
+    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+    url:
+      "https://graph.facebook.com/v12.0/" +
+      phone_number_id +
+      "/messages?access_token=" +
+      token,
+    data: {
+      messaging_product: "whatsapp",
+      to: from,
+      type: "text",
+      text: { // the text object
+        body: msg_body
+      }
+    },
+    headers: { "Content-Type": "application/json" },
+  })
+}
