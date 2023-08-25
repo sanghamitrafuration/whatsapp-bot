@@ -22,6 +22,8 @@ const PORT= process.env.PORT || 1337;
 // Sets server port and logs message on success
 app.listen(PORT, () => console.log("webhook is listening"));
 
+app.get("/", (req, res)=>res.send("Welcome"));
+
 // Accepts POST requests at /webhook endpoint
 app.post("/webhook", async(req, res) => {
   // Parse the request reqData from the POST
