@@ -12,6 +12,8 @@
 // and save it as environment variable into the .env file)
 const token = process.env.WHATSAPP_TOKEN;
 
+require("dotenv").config();
+
 // Imports dependencies and set up http server
 const express = require("express");
 const body_parser = require("body-parser");
@@ -19,8 +21,10 @@ const axios = require("axios").default;
 const  app = express().use(body_parser.json()); // creates express http server
 const PORT= process.env.PORT || 1337;
 
+
+
 // Sets server port and logs message on success
-app.listen(PORT, () => console.log("webhook is listening"));
+app.listen(PORT, () => console.log(`webhook is listening at ${PORT}`));
 
 app.get("/", (req, res)=>res.send("Welcome"));
 
