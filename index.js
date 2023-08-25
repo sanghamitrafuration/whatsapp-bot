@@ -13,38 +13,39 @@
 const token = process.env.WHATSAPP_TOKEN;
 
 // Imports dependencies and set up http server
-const express = require("express"),
-  body_parser = require("body-parser"),
-  axios = require("axios").default,
-  app = express().use(body_parser.json()); // creates express http server
+const express = require("express");
+const body_parser = require("body-parser");
+const axios = require("axios").default;
+const  app = express().use(body_parser.json()); // creates express http server
+const PORT= process.env.PORT || 1337;
 
 // Sets server port and logs message on success
-app.listen(process.env.PORT || 1337, () => console.log("webhook is listening"));
+app.listen(PORT, () => console.log("webhook is listening"));
 
 // Accepts POST requests at /webhook endpoint
 app.post("/webhook", async(req, res) => {
-  // Parse the request body from the POST
+  // Parse the request reqData from the POST
   try{
-      let body = req.body;
+      let reqData = req.body;
 
     // Check the Incoming webhook message
-    console.log(JSON.stringify(body, null, 2));
+    console.log(JSON.stringify(reqData, null, 2));
 
     // info on WhatsApp text message payload: https://developers.facebook.com/docs/whatsapp/cloud-api/webhooks/payload-examples#text-messages
-    if (body.object) {
+    if (reqData.object) {
       if (
-        body.entry &&
-        body.entry[0].changes &&
-        body.entry[0].changes[0] &&
-        body.entry[0].changes[0].value.messages &&
-        body.entry[0].changes[0].value.messages[0] &&
-        body.entry[0].changes[0].value.messages[0].type==="text"
+        reqData.entry &&
+        reqData.entry[0].changes &&
+        reqData.entry[0].changes[0] &&
+        reqData.entry[0].changes[0].value.messages &&
+        reqData.entry[0].changes[0].value.messages[0] &&
+        reqData.entry[0].changes[0].value.messages[0].type==="text"
       ) {
         let phone_number_id =
-        body.entry[0].changes[0].value.metadata.phone_number_id;
-        let from = body.entry[0].changes[0].value.messages[0].from;// extract the phone number from the webhook payload
-        let msg_body = body.entry[0].changes[0].value.messages[0].text.body; // extract the message text from the webhook payload
-        console.log(body.entry[0].changes[0].value.messages[0], "body.entry[0].changes[0].value.messages[0]")
+        reqData.entry[0].changes[0].value.metadata.phone_number_id;
+        let from = reqData.entry[0].changes[0].value.messages[0].from;// extract the phone number from the webhook payload
+        let msg_body = reqData.entry[0].changes[0].value.messages[0].text.body; // extract the message text from the webhook payload
+        console.log(reqData.entry[0].changes[0].value.messages[0], "body.entry[0].changes[0].value.messages[0]")
         if(msg_body=="Hi" || msg_body=="hi" || msg_body=="Hey" || msg_body=="hey"){
           msg_body="Welcome to Furation tech"
           welcomeMessageButtons(phone_number_id, msg_body, from);
@@ -57,28 +58,28 @@ app.post("/webhook", async(req, res) => {
           welcomeMessageButtons(phone_number_id, msg_body, from);
         }
       } else if (
-        body.entry[0].changes[0].value.messages[0].type==="interactive" &&
-        body.entry[0].changes[0].value.messages[0].interactive &&
-        body.entry[0].changes[0].value.messages[0].interactive.button_reply &&
-        body.entry[0].changes[0].value.messages[0].interactive.button_reply.id
+        reqData.entry[0].changes[0].value.messages[0].type==="interactive" &&
+        reqData.entry[0].changes[0].value.messages[0].interactive &&
+        reqData.entry[0].changes[0].value.messages[0].interactive.button_reply &&
+        reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id
       ){
           let phone_number_id =
-          body.entry[0].changes[0].value.metadata.phone_number_id;
-          let from = body.entry[0].changes[0].value.messages[0].from;// extract the phone number from the webhook payload
-          let msg_body = body.entry[0].changes[0].value.messages[0].interactive.button_reply.title; // extract the message text from the webhook payload
-          console.log(body.entry[0].changes[0].value.messages[0].interactive.button_reply.title, "body.entry[0].changes[0].value.messages[0].interactive.button_reply.title")
+          reqData.entry[0].changes[0].value.metadata.phone_number_id;
+          let from = reqData.entry[0].changes[0].value.messages[0].from;// extract the phone number from the webhook payload
+          let msg_body = reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.title; // extract the message text from the webhook payload
+          console.log(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.title, "reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.title")
   
-          if(body.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_1"){
+          if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_1"){
             buttonId1Response(phone_number_id, from, msg_body);
-          }else if(body.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_2") {
-            buttonId2Response(phone_number_id, from, msg_body);
-          }else if(body.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_3") {
+          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_2") {
+            buttonId2Response(phone_number_id, from, msg_body); 
+          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_3") {
             buttonId3Response(phone_number_id, from, msg_body);
-          }else if(body.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_4") {
+          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_4") {
             buttonId4Response(phone_number_id, from, msg_body);
-          }else if(body.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_5") {
+          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_5") {
             buttonId5Response(phone_number_id, from, msg_body);
-          }else if(body.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_6") {
+          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_6") {
             buttonId6Response(phone_number_id, from, msg_body);
           }else{
             noresponse(phone_number_id, from, msg_body);
