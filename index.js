@@ -7,12 +7,13 @@
 
 "use strict";
 
+
+require("dotenv").config();
+
 // Access token for your app
 // (copy token from DevX getting started page
 // and save it as environment variable into the .env file)
 const token = process.env.WHATSAPP_TOKEN;
-
-require("dotenv").config();
 
 // Imports dependencies and set up http server
 const express = require("express");
