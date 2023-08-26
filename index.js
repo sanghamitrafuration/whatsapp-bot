@@ -26,144 +26,103 @@ app.listen(PORT, () => console.log(`webhook is listening at ${PORT}`));
 
 app.get("/", (req, res) => res.send("Welcome"));
 
-// // Accepts POST requests at /webhook endpoint
-// app.post("/webhook", async(req, res) => {
-//   // Parse the request reqData from the POST
-//   try{
-//       let reqData = req.body;
-
-//     // Check the Incoming webhook message
-//     console.log(JSON.stringify(reqData, null, 2));
-
-//     // info on WhatsApp text message payload: https://developers.facebook.com/docs/whatsapp/cloud-api/webhooks/payload-examples#text-messages
-//     if (reqData.object) {
-//       if (
-//         reqData.entry &&
-//         reqData.entry[0].changes &&
-//         reqData.entry[0].changes[0] &&
-//         reqData.entry[0].changes[0].value.messages &&
-//         reqData.entry[0].changes[0].value.messages[0] &&
-//         reqData.entry[0].changes[0].value.messages[0].type==="text"
-//       ) {
-//         let phone_number_id =
-//         reqData.entry[0].changes[0].value.metadata.phone_number_id;
-//         let from = reqData.entry[0].changes[0].value.messages[0].from;// extract the phone number from the webhook payload
-//         let msg_body = reqData.entry[0].changes[0].value.messages[0].text.body; // extract the message text from the webhook payload
-//         console.log(reqData.entry[0].changes[0].value.messages[0], "body.entry[0].changes[0].value.messages[0]")
-//         if(msg_body=="Hi" || msg_body=="hi" || msg_body=="Hey" || msg_body=="hey"){
-//           msg_body="Welcome to Furation tech"
-//           welcomeMessageButtons(phone_number_id, msg_body, from);
-//         }else if(msg_body=="Ok" || msg_body=="ok"){
-//           msg_body= "Thank you for contacting us"
-//           okresponse(phone_number_id, from, msg_body);
-//         }
-//         else{
-//           msg_body="For more info. please click on https://www.furation.tech/"
-//           welcomeMessageButtons(phone_number_id, msg_body, from);
-//         }
-//       } else if (
-//         reqData.entry[0].changes[0].value.messages[0].type==="interactive" &&
-//         reqData.entry[0].changes[0].value.messages[0].interactive &&
-//         reqData.entry[0].changes[0].value.messages[0].interactive.button_reply &&
-//         reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id
-//       ){
-//           let phone_number_id =
-//           reqData.entry[0].changes[0].value.metadata.phone_number_id;
-//           let from = reqData.entry[0].changes[0].value.messages[0].from;// extract the phone number from the webhook payload
-//           let msg_body = reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.title; // extract the message text from the webhook payload
-//           console.log(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.title, "reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.title")
-
-//           if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_1"){
-//             buttonId1Response(phone_number_id, from, msg_body);
-//           }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_2") {
-//             buttonId2Response(phone_number_id, from, msg_body);
-//           }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_3") {
-//             buttonId3Response(phone_number_id, from, msg_body);
-//           }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_4") {
-//             buttonId4Response(phone_number_id, from, msg_body);
-//           }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_5") {
-//             buttonId5Response(phone_number_id, from, msg_body);
-//           }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_6") {
-//             buttonId6Response(phone_number_id, from, msg_body);
-//           }else{
-//             noresponse(phone_number_id, from, msg_body);
-//           }
-//           res.sendStatus(200);
-//       }
-//      }
-//     else {
-//       // Return a '404 Not Found' if event is not from a WhatsApp API
-//       res.sendStatus(404);
-//     }
-//   }
-//   catch(error){
-//     console.log(error)
-//   }
-// });
-
+// Accepts POST requests at /webhook endpoint
 app.post("/webhook", async (req, res) => {
+  // Parse the request reqData from the POST
   try {
     let reqData = req.body;
 
     // Check the Incoming webhook message
     console.log(JSON.stringify(reqData, null, 2));
 
-    if (reqData.object === "whatsapp_business_account") {
+    // info on WhatsApp text message payload: https://developers.facebook.com/docs/whatsapp/cloud-api/webhooks/payload-examples#text-messages
+    if (reqData.object) {
       if (
         reqData.entry &&
         reqData.entry[0].changes &&
         reqData.entry[0].changes[0] &&
         reqData.entry[0].changes[0].value.messages &&
-        reqData.entry[0].changes[0].value.messages[0]
+        reqData.entry[0].changes[0].value.messages[0] &&
+        reqData.entry[0].changes[0].value.messages[0].type === "text"
       ) {
-        const message = reqData.entry[0].changes[0].value.messages[0];
-
-        if (message.type === "text") {
-          const phone_number_id = message.value.metadata.phone_number_id;
-          const from = message.from;
-          const msg_body = message.text.body;
-
-          if (
-            msg_body.toLowerCase() === "hi" ||
-            msg_body.toLowerCase() === "hey"
-          ) {
-            msg_body = "Welcome to Furation tech";
-            welcomeMessageButtons(phone_number_id, msg_body, from);
-          } else if (msg_body.toLowerCase() === "ok") {
-            msg_body = "Thank you for contacting us";
-            okresponse(phone_number_id, from, msg_body);
-          } else {
-            msg_body =
-              "For more info, please click on https://www.furation.tech/";
-            welcomeMessageButtons(phone_number_id, msg_body, from);
-          }
-        } else if (
-          message.type === "interactive" &&
-          message.interactive &&
-          message.interactive.button_reply &&
-          message.interactive.button_reply.id
+        let phone_number_id =
+          reqData.entry[0].changes[0].value.metadata.phone_number_id;
+        let from = reqData.entry[0].changes[0].value.messages[0].from; // extract the phone number from the webhook payload
+        let msg_body = reqData.entry[0].changes[0].value.messages[0].text.body; // extract the message text from the webhook payload
+        console.log(
+          reqData.entry[0].changes[0].value.messages[0],
+          "body.entry[0].changes[0].value.messages[0]"
+        );
+        if (
+          msg_body == "Hi" ||
+          msg_body == "hi" ||
+          msg_body == "Hey" ||
+          msg_body == "hey"
         ) {
-          const phone_number_id = message.value.metadata.phone_number_id;
-          const from = message.from;
-          const msg_body = message.interactive.button_reply.title;
-          const buttonId = message.interactive.button_reply.id;
-
-          if (buttonId === "UNIQUE_BUTTON_ID_1") {
-            buttonId1Response(phone_number_id, from, msg_body);
-          } else if (buttonId === "UNIQUE_BUTTON_ID_2") {
-            buttonId2Response(phone_number_id, from, msg_body);
-          } else if (buttonId === "UNIQUE_BUTTON_ID_3") {
-            buttonId3Response(phone_number_id, from, msg_body);
-          } else if (buttonId === "UNIQUE_BUTTON_ID_4") {
-            buttonId4Response(phone_number_id, from, msg_body);
-          } else if (buttonId === "UNIQUE_BUTTON_ID_5") {
-            buttonId5Response(phone_number_id, from, msg_body);
-          } else if (buttonId === "UNIQUE_BUTTON_ID_6") {
-            buttonId6Response(phone_number_id, from, msg_body);
-          } else {
-            noresponse(phone_number_id, from, msg_body);
-          }
+          msg_body = "Welcome to Furation tech";
+          welcomeMessageButtons(phone_number_id, msg_body, from);
+        } else if (msg_body == "Ok" || msg_body == "ok") {
+          msg_body = "Thank you for contacting us";
+          okresponse(phone_number_id, from, msg_body);
+        } else {
+          msg_body =
+            "For more info. please click on https://www.furation.tech/";
+          welcomeMessageButtons(phone_number_id, msg_body, from);
         }
+      } else if (
+        reqData.entry[0].changes[0].value.messages[0].type === "interactive" &&
+        reqData.entry[0].changes[0].value.messages[0].interactive &&
+        reqData.entry[0].changes[0].value.messages[0].interactive
+          .button_reply &&
+        reqData.entry[0].changes[0].value.messages[0].interactive.button_reply
+          .id
+      ) {
+        let phone_number_id =
+          reqData.entry[0].changes[0].value.metadata.phone_number_id;
+        let from = reqData.entry[0].changes[0].value.messages[0].from; // extract the phone number from the webhook payload
+        let msg_body =
+          reqData.entry[0].changes[0].value.messages[0].interactive.button_reply
+            .title; // extract the message text from the webhook payload
+        console.log(
+          reqData.entry[0].changes[0].value.messages[0].interactive.button_reply
+            .title,
+          "reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.title"
+        );
+
+        if (
+          reqData.entry[0].changes[0].value.messages[0].interactive.button_reply
+            .id === "UNIQUE_BUTTON_ID_1"
+        ) {
+          buttonId1Response(phone_number_id, from, msg_body);
+        } else if (
+          reqData.entry[0].changes[0].value.messages[0].interactive.button_reply
+            .id === "UNIQUE_BUTTON_ID_2"
+        ) {
+          buttonId2Response(phone_number_id, from, msg_body);
+        } else if (
+          reqData.entry[0].changes[0].value.messages[0].interactive.button_reply
+            .id === "UNIQUE_BUTTON_ID_3"
+        ) {
+          buttonId3Response(phone_number_id, from, msg_body);
+        } else if (
+          reqData.entry[0].changes[0].value.messages[0].interactive.button_reply
+            .id === "UNIQUE_BUTTON_ID_4"
+        ) {
+          buttonId4Response(phone_number_id, from, msg_body);
+        } else if (
+          reqData.entry[0].changes[0].value.messages[0].interactive.button_reply
+            .id === "UNIQUE_BUTTON_ID_5"
+        ) {
+          buttonId5Response(phone_number_id, from, msg_body);
+        } else if (
+          reqData.entry[0].changes[0].value.messages[0].interactive.button_reply
+            .id === "UNIQUE_BUTTON_ID_6"
+        ) {
+          buttonId6Response(phone_number_id, from, msg_body);
+        } else {
+          noresponse(phone_number_id, from, msg_body);
+        }
+        res.sendStatus(200);
       }
     } else {
       // Return a '404 Not Found' if event is not from a WhatsApp API
