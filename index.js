@@ -57,6 +57,11 @@ app.post("/webhook", async(req, res) => {
           welcomeMessageButtons(phone_number_id, msg_body, from);
         }
       } else if (
+        body.entry &&
+        body.entry[0].changes &&
+        body.entry[0].changes[0] &&
+        body.entry[0].changes[0].value.messages &&
+        body.entry[0].changes[0].value.messages[0] &&
         body.entry[0].changes[0].value.messages[0].type==="interactive" &&
         body.entry[0].changes[0].value.messages[0].interactive &&
         body.entry[0].changes[0].value.messages[0].interactive.button_reply &&
