@@ -191,7 +191,7 @@ const welcomeMessageButtons= (phone_number_id, msg_body, from) => {
         "type": "list",
         "header": {
           "type": "text",
-          "text": "HEADER_TEXT"
+          "text": "Our Services"
         },
         "body": {
           "text": "BODY_TEXT"
