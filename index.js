@@ -89,6 +89,10 @@ app.post("/webhook", async(req, res) => {
           buttonId2Response(phone_number_id, from, msg_body);
         }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_3") {
           buttonId3Response(phone_number_id, from, msg_body);
+        }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_4") {
+          buttonId4Response(phone_number_id, from);
+        }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_5") {
+          buttonId5Response(phone_number_id, from);
         }else{
           noresponse(phone_number_id, from, msg_body);
         }
@@ -211,7 +215,7 @@ const welcomeMessageButtons= (phone_number_id, msg_body, from) => {
                   type: "reply",
                   reply: {
                     id: "UNIQUE_BUTTON_ID_3",
-                    title: "Contact us"
+                    title: "Contact Us"
                   }
                 }
               ]
@@ -257,31 +261,38 @@ const buttonId1Response= (phone_number_id, from, msg_body) => {
               "rows": [
                 {
                   "id": "OUR_SERVICE_1_ID",
-                  "title": "Mobile App Development"
+                  "title": "Mobile App Development",
+                  "description": "Mobile App Development"
                 },
                 {
                   "id": "OUR_SERVICE_2_ID",
-                  "title": "Web App Development"
+                  "title": "Web App Development",
+                  "description": "Web App Development"
                 },
                 {
                   "id": "OUR_SERVICE_3_ID",
-                  "title": "Website Design & Development"
+                  "title": "Website Design & Development",
+                  "description": "Website Design & Development"
                 },
                 {
                   "id": "OUR_SERVICE_4_ID",
-                  "title": "UI & UX Design"
+                  "title": "UI & UX Design",
+                  "description": "UI & UX Design"
                 },
                 {
                   "id": "OUR_SERVICE_5_ID",
-                  "title": "Custom Software Development"
+                  "title": "Custom Software Development",
+                  "description": "Custom Software Development"
                 },
                 {
                   "id": "OUR_SERVICE_6_ID",
-                  "title": "Team Augmentation"
+                  "title": "Team Augmentation",
+                  "description": "Team Augmentation"
                 },
                 {
                   "id": "OUR_SERVICE_7_ID",
-                  "title": "Design & Product Strategy"
+                  "title": "Design & Product Strategy",
+                  "description": "Design & Product Strategy"
                 }
               ]
             }
@@ -353,6 +364,48 @@ const buttonId3Response= (phone_number_id, from, msg_body) => {
             }
           ]
         }
+      }
+    },
+    headers: { "Content-Type": "application/json" },
+  })
+}
+
+const buttonId4Response= (phone_number_id, from) => {
+  axios({
+    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+    url:
+      "https://graph.facebook.com/v12.0/" +
+      phone_number_id +
+      "/messages?access_token=" +
+      token,
+    data: {
+      messaging_product: "whatsapp",
+      to: from,
+      type: "text",
+      text: { // the text object
+        "preview_url": true,
+        body: "Please email on mailto: sanghamitramymail@gmail.com"
+      }
+    },
+    headers: { "Content-Type": "application/json" },
+  })
+}
+
+const buttonId5Response= (phone_number_id, from) => {
+  axios({
+    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+    url:
+      "https://graph.facebook.com/v12.0/" +
+      phone_number_id +
+      "/messages?access_token=" +
+      token,
+    data: {
+      messaging_product: "whatsapp",
+      to: from,
+      type: "text",
+      text: { // the text object
+        "preview_url": true,
+        body: "Please call on tel:7894272853"
       }
     },
     headers: { "Content-Type": "application/json" },
