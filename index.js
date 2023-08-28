@@ -261,31 +261,38 @@ const buttonId1Response= (phone_number_id, from) => {
               "rows": [
                 {
                   "id": "OUR_SERVICE_1_ID",
-                  "title": "Mobile App Development"
+                  "title": "Mobile App Development",
+                  "description":
                 },
                 {
                   "id": "OUR_SERVICE_2_ID",
-                  "title": "Web App Development"
+                  "title": "Web App Development",
+                  "description": "Mobile App Development"
                 },
                 {
                   "id": "OUR_SERVICE_3_ID",
-                  "title": "Website Design & Development"
+                  "title": "Website Design & Development",
+                  "description": "Website Design & Development"
                 },
                 {
                   "id": "OUR_SERVICE_4_ID",
-                  "title": "UI & UX Design"
+                  "title": "UI & UX Design",
+                  "description": "UI & UX Design"
                 },
                 {
                   "id": "OUR_SERVICE_5_ID",
-                  "title": "Custom Software Development"
+                  "title": "Custom Software Development",
+                  "description": "Custom Software Development"
                 },
                 {
                   "id": "OUR_SERVICE_6_ID",
-                  "title": "Team Augmentation"
+                  "title": "Team Augmentation",
+                  "description": "Team Augmentation"
                 },
                 {
                   "id": "OUR_SERVICE_7_ID",
-                  "title": "Design & Product Strategy"
+                  "title": "Design & Product Strategy",
+                  "description": "Design & Product Strategy"
                 }
               ]
             }
