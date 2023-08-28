@@ -56,7 +56,15 @@ app.post("/webhook", async(req, res) => {
         if(msg_body=="Hi" || msg_body=="hi" || msg_body=="Hey" || msg_body=="hey"){
           msg_body="Welcome to Furation tech"
           welcomeMessageButtons(phone_number_id, msg_body, from);
+        }
+        else if(msg_body=="Ok" || msg_body=="ok" || msg_body=="thanks"){
+        }
+        else if(msg_body=="Ok" || msg_body=="ok" || msg_body=="thanks"){
         }else if(msg_body=="Ok" || msg_body=="ok"){
+        }
+        else if(msg_body=="Ok" || msg_body=="ok" || msg_body=="thanks"){
+        }
+        else if(msg_body=="Ok" || msg_body=="ok" || msg_body=="thanks"){
           msg_body= "Thank you for contacting us";
           okresponse(phone_number_id, from, msg_body);
         }
@@ -84,7 +92,13 @@ app.post("/webhook", async(req, res) => {
           if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_1"){
             buttonId1Response(phone_number_id, from, msg_body);
           }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_2") {
+            buttonId2Response(phone_number_id, from, msg_body);
             buttonId2Response(phone_number_id, from, msg_body); 
+            buttonId2Response(phone_number_id, from, msg_body);
+            buttonId2Response(phone_number_id, from, msg_body); 
+            buttonId2Response(phone_number_id, from, msg_body);
+            buttonId2Response(phone_number_id, from, msg_body); 
+            buttonId2Response(phone_number_id, from, msg_body);
           }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_3") {
             buttonId3Response(phone_number_id, from, msg_body);
           }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_4") {
@@ -118,7 +132,7 @@ app.get("/webhook", (req, res) => {
   **/
   
   const verify_token = process.env.VERIFY_TOKEN;
-  console.log(req.query, "Welcome")
+  console.log(req.query, "Welcome");
   // Parse params from the webhook verification request
   let mode = req.query["hub.mode"];
   let token = req.query["hub.verify_token"];
