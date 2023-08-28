@@ -260,12 +260,12 @@ const buttonId1Response= (phone_number_id, from) => {
               "title": "Our service",
               "rows": [
                 {
-                  "id": "SECTION_1_ROW_1_ID",
-                  "title": "SECTION_1_ROW_1_TITLE",
-                  "description": "SECTION_1_ROW_1_DESCRIPTION"
+                  "id": "OUR_SERVICE_1_ID",
+                  "title": "Mobile App Development",
+                  "description": "Mobile App Development"
                 },
                 {
-                  "id": "SECTION_1_ROW_2_ID",
+                  "id": "OUR_SERVICE_2_ID",
                   "title": "SECTION_1_ROW_2_TITLE",
                   "description": "SECTION_1_ROW_2_DESCRIPTION"
                 }
