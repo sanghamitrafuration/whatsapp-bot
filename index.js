@@ -245,29 +245,29 @@ const buttonId1Response= (phone_number_id, from) => {
         "type": "list",
         "header": {
           "type": "text",
-          "text": "OUR SERVICES"
+          "text": "HEADER_TEXT"
         },
         "body": {
-          "text": "We offer expertise in cutting-edge technologies such as Machine Intelligence (MI), Artificial Intelligence (AI), and Data Engineering."
+          "text": "BODY_TEXT"
         },
         "footer": {
-          "text": "Our aim is to provide innovative solutions that cater to the unique needs of each client and drive their business forward."
+          "text": "FOOTER_TEXT"
         },
         "action": {
           "button": "BUTTON_TEXT",
           "sections": [
             {
-              "title": "SECTION_1_TITLE",
+              "title": "Our service",
               "rows": [
                 {
-                  "id": "SECTION_1_ROW_1_ID",
-                  "title": "SECTION_1_ROW_1_TITLE",
-                  "description": "SECTION_1_ROW_1_DESCRIPTION"
+                  "id": "OUR_SERVICE_1_ID",
+                  "title": "OUR_SERVICE_1_ID",
+                  "description": "OUR_SERVICE_1_ID"
                 },
                 {
-                  "id": "SECTION_1_ROW_2_ID",
-                  "title": "SECTION_1_ROW_2_TITLE",
-                  "description": "SECTION_1_ROW_2_DESCRIPTION"
+                  "id": "OUR_SERVICE_2_ID",
+                  "title": "OUR_SERVICE_2_ID",
+                  "description": "OUR_SERVICE_2_ID"
                 }
               ]
             },
