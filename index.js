@@ -84,7 +84,7 @@ app.post("/webhook", async(req, res) => {
         console.log(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.title, "reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.title")
 
         if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_1"){
-          buttonId1Response(phone_number_id, from, msg_body);
+          buttonId1Response(phone_number_id, from);
         }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_2") {
           buttonId2Response(phone_number_id, from, msg_body);
         }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_3") {
@@ -228,7 +228,7 @@ const welcomeMessageButtons= (phone_number_id, msg_body, from) => {
   .catch(err=>console.log(err))
 }
 
-const buttonId1Response= (phone_number_id, from, msg_body) => {
+const buttonId1Response= (phone_number_id, from) => {
   axios({
     method: "POST", // Required, HTTP method, a string, e.g. POST, GET
     url:
@@ -239,7 +239,7 @@ const buttonId1Response= (phone_number_id, from, msg_body) => {
     data: {
       "messaging_product": "whatsapp",
       "recipient_type": "individual",
-      "to": "PHONE_NUMBER",
+      "to": from,
       "type": "interactive",
       "interactive": {
         "type": "list",
