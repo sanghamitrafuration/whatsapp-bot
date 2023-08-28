@@ -245,44 +245,54 @@ const buttonId1Response= (phone_number_id, from) => {
         "type": "list",
         "header": {
           "type": "text",
-          "text": "HEADER_TEXT"
+          "text": "OUR SERVICES"
         },
         "body": {
-          "text": "BODY_TEXT"
+          "text": "We offer expertise in cutting-edge technologies such as Machine Intelligence (MI), Artificial Intelligence (AI), and Data Engineering."
         },
         "footer": {
-          "text": "FOOTER_TEXT"
+          "text": "Our aim is to provide innovative solutions that cater to the unique needs of each client and drive their business forward."
         },
         "action": {
-          "button": "BUTTON_TEXT",
+          "button": "MENU",
           "sections": [
             {
-              "title": "SECTION_1_TITLE",
+              "title": "OUR SERVICES",
               "rows": [
                 {
-                  "id": "SECTION_1_ROW_1_ID",
-                  "title": "SECTION_1_ROW_1_TITLE",
-                  "description": "SECTION_1_ROW_1_DESCRIPTION"
+                  "id": "OUR_SERVICE_1_ID",
+                  "title": "Mobile App Development",
+                  "description": "Mobile App Development"
                 },
                 {
-                  "id": "SECTION_1_ROW_2_ID",
-                  "title": "SECTION_1_ROW_2_TITLE",
-                  "description": "SECTION_1_ROW_2_DESCRIPTION"
-                }
-              ]
-            },
-            {
-              "title": "SECTION_2_TITLE",
-              "rows": [
-                {
-                  "id": "SECTION_2_ROW_1_ID",
-                  "title": "SECTION_2_ROW_1_TITLE",
-                  "description": "SECTION_2_ROW_1_DESCRIPTION"
+                  "id": "OUR_SERVICE_2_ID",
+                  "title": "Web App Development",
+                  "description": "Web App Development"
                 },
                 {
-                  "id": "SECTION_2_ROW_2_ID",
-                  "title": "SECTION_2_ROW_2_TITLE",
-                  "description": "SECTION_2_ROW_2_DESCRIPTION"
+                  "id": "OUR_SERVICE_3_ID",
+                  "title": "Website Design & Development",
+                  "description": "Website Design & Development"
+                },
+                {
+                  "id": "OUR_SERVICE_4_ID",
+                  "title": "UI & UX Design",
+                  "description": "UI & UX Design"
+                },
+                {
+                  "id": "OUR_SERVICE_5_ID",
+                  "title": "Custom Software Development",
+                  "description": "Custom Software Development"
+                },
+                {
+                  "id": "OUR_SERVICE_6_ID",
+                  "title": "Team Augmentation",
+                  "description": "Team Augmentation"
+                },
+                {
+                  "id": "OUR_SERVICE_7_ID",
+                  "title": "Design & Product Strategy",
+                  "description": "Design & Product Strategy"
                 }
               ]
             }
