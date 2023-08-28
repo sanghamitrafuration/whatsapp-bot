@@ -245,19 +245,19 @@ const buttonId1Response= (phone_number_id, from) => {
         "type": "list",
         "header": {
           "type": "text",
-          "text": "HEADER_TEXT"
+          "text": "Our Services"
         },
         "body": {
-          "text": "BODY_TEXT"
+          "text": "Our aim is to provide innovative solutions that cater to the unique needs of each client and drive their business forward."
         },
         "footer": {
-          "text": "FOOTER_TEXT"
+          "text": "We offer expertise in cutting-edge technologies such as Machine Intelligence (MI), Artificial Intelligence (AI), and Data Engineering. "
         },
         "action": {
-          "button": "BUTTON_TEXT",
+          "button": "Services",
           "sections": [
             {
-              "title": "SECTION_1_TITLE",
+              "title": "App Development",
               "rows": [
                 {
                   "id": "OUR_SERVICE_1_ID",
@@ -265,48 +265,42 @@ const buttonId1Response= (phone_number_id, from) => {
                 },
                 {
                   "id": "OUR_SERVICE_2_ID",
-                  "title": "SECTION_1_ROW_2_TITLE",
-                  "description": "SECTION_1_ROW_2_DESCRIPTION"
+                  "title": "Web App Development"
                 }
               ]
             },
             {
-              "title": "SECTION_2_TITLE",
+              "title": "Designs",
               "rows": [
                 {
                   "id": "OUR_SERVICE_3_ID",
-                  "title": "SECTION_2_ROW_1_TITLE",
-                  "description": "SECTION_2_ROW_1_DESCRIPTION"
+                  "title": "Website Design & Development"
                 },
                 {
                   "id": "OUR_SERVICE_4_ID",
-                  "title": "SECTION_2_ROW_2_TITLE",
-                  "description": "SECTION_2_ROW_2_DESCRIPTION"
+                  "title": "UI & UX Design"
                 }
               ]
             },
             {
-              "title": "SECTION_2_TITLE",
+              "title": "Software and Teams",
               "rows": [
                 {
                   "id": "OUR_SERVICE_5_ID",
-                  "title": "SECTION_2_ROW_1_TITLE",
-                  "description": "SECTION_2_ROW_1_DESCRIPTION"
+                  "title": "Custom Software Development"
                 },
                 {
                   "id": "OUR_SERVICE_6_ID",
-                  "title": "SECTION_2_ROW_2_TITLE",
-                  "description": "SECTION_2_ROW_2_DESCRIPTION"
+                  "title": "Team Augmentation"
                 }
               ]
             },
             {
-              "title": "SECTION_2_TITLE",
+              "title": "Designs & Statergy",
               "rows": [
                 {
                   "id": "OUR_SERVICE_7_ID",
-                  "title": "SECTION_2_ROW_1_TITLE",
-                  "description": "SECTION_2_ROW_1_DESCRIPTION"
+                  "title": "Design & Product Strategy"
                 }
               ]
             }
