@@ -185,7 +185,7 @@ const welcomeMessageButtons= (phone_number_id, msg_body, from) => {
     data: {
       "messaging_product": "whatsapp",
       "recipient_type": "individual",
-      "to": "PHONE_NUMBER",
+      "to": from,
       "type": "interactive",
       "interactive": {
         "type": "list",
