@@ -55,6 +55,7 @@ app.post("/webhook", async(req, res) => {
         console.log(reqData.entry[0].changes[0].value.messages[0], "body.entry[0].changes[0].value.messages[0]")
         if(msg_body=="Hi" || msg_body=="hi" || msg_body=="Hey" || msg_body=="hey" || msg_body=="Hello" || msg_body=="hello"){
           msg_body="Welcome to *Furation tech Solutions* . *Technology that drives your business* . We specialize in providing comprehensive solutions in Blockchain and Human Resource Management (HRM), Customer Relationship Management (CRM), Enterprise Resource Planning (ERP), and custom E-commerce solutions."
+          console.log("000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000")
           welcomeMessageButtons(phone_number_id, msg_body, from);
         }
         else if(msg_body=="Ok" || msg_body=="ok" || msg_body=="thanks"){
