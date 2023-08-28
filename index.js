@@ -183,54 +183,40 @@ const welcomeMessageButtons= (phone_number_id, msg_body, from) => {
       "/messages?access_token=" +
       token,
     data: {
-      "messaging_product": "whatsapp",
-      "recipient_type": "individual",
-      "to": from,
-      "type": "interactive",
-      "interactive": {
-        "type": "list",
-        "header": {
-          "type": "text",
-          "text": "Our Services"
+      messaging_product: "whatsapp",
+      to: from,
+      text: {
+        body: msg_body
+      },
+      type: "interactive",
+      interactive: {
+        type: "button",
+        body: {
+          // text: "Select the option"
+          text: msg_body
         },
-        "body": {
-          "text": "BODY_TEXT"
-        },
-        "footer": {
-          "text": "FOOTER_TEXT"
-        },
-        "action": {
-          "button": "BUTTON_TEXT",
-          "sections": [
+        action: {
+          buttons: [
             {
-              "title": "SECTION_1_TITLE",
-              "rows": [
-                {
-                  "id": "SECTION_1_ROW_1_ID",
-                  "title": "SECTION_1_ROW_1_TITLE",
-                  "description": "SECTION_1_ROW_1_DESCRIPTION"
-                },
-                {
-                  "id": "SECTION_1_ROW_2_ID",
-                  "title": "SECTION_1_ROW_2_TITLE",
-                  "description": "SECTION_1_ROW_2_DESCRIPTION"
-                }
-              ]
+              type: "reply",
+              reply: {
+                id: "UNIQUE_BUTTON_ID_1",
+                title: "Our Services"
+              }
             },
             {
-              "title": "SECTION_2_TITLE",
-              "rows": [
-                {
-                  "id": "SECTION_2_ROW_1_ID",
-                  "title": "SECTION_2_ROW_1_TITLE",
-                  "description": "SECTION_2_ROW_1_DESCRIPTION"
-                },
-                {
-                  "id": "SECTION_2_ROW_2_ID",
-                  "title": "SECTION_2_ROW_2_TITLE",
-                  "description": "SECTION_2_ROW_2_DESCRIPTION"
-                }
-              ]
+              type: "reply",
+              reply: {
+                id: "UNIQUE_BUTTON_ID_2",
+                title: "Our Clients"
+              }
+            },
+            {
+              type: "reply",
+              reply: {
+                id: "UNIQUE_BUTTON_ID_3",
+                title: "Contact Us"
+              }
             }
           ]
         }
