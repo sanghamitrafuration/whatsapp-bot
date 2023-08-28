@@ -53,23 +53,16 @@ app.post("/webhook", async(req, res) => {
         let from = reqData.entry[0].changes[0].value.messages[0].from;// extract the phone number from the webhook payload
         let msg_body = reqData.entry[0].changes[0].value.messages[0].text.body; // extract the message text from the webhook payload
         console.log(reqData.entry[0].changes[0].value.messages[0], "body.entry[0].changes[0].value.messages[0]")
-        if(msg_body=="Hi" || msg_body=="hi" || msg_body=="Hey" || msg_body=="hey"){
-          msg_body="Welcome to Furation tech"
+        if(msg_body=="Hi" || msg_body=="hi" || msg_body=="Hey" || msg_body=="hey" || msg_body=="Hello" || msg_body=="hello"){
+          msg_body="Welcome to *Furation tech Solutions* . *Technology that drives your business* . We specialize in providing comprehensive solutions in Blockchain and Human Resource Management (HRM), Customer Relationship Management (CRM), Enterprise Resource Planning (ERP), and custom E-commerce solutions."
           welcomeMessageButtons(phone_number_id, msg_body, from);
-        }
-        else if(msg_body=="Ok" || msg_body=="ok" || msg_body=="thanks"){
-        }
-        else if(msg_body=="Ok" || msg_body=="ok" || msg_body=="thanks"){
-        }else if(msg_body=="Ok" || msg_body=="ok"){
-        }
-        else if(msg_body=="Ok" || msg_body=="ok" || msg_body=="thanks"){
         }
         else if(msg_body=="Ok" || msg_body=="ok" || msg_body=="thanks"){
           msg_body= "Thank you for contacting us";
           okresponse(phone_number_id, from, msg_body);
         }
         else{
-          msg_body="For more info. please click on https://www.furation.tech/"
+          msg_body="Welcome to *Furation tech Solutions* . *Technology that drives your business* . We specialize in providing comprehensive solutions in Blockchain and Human Resource Management (HRM), Customer Relationship Management (CRM), Enterprise Resource Planning (ERP), and custom E-commerce solutions."
           welcomeMessageButtons(phone_number_id, msg_body, from);
         }
       } else if (
@@ -93,20 +86,8 @@ app.post("/webhook", async(req, res) => {
             buttonId1Response(phone_number_id, from, msg_body);
           }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_2") {
             buttonId2Response(phone_number_id, from, msg_body);
-            buttonId2Response(phone_number_id, from, msg_body); 
-            buttonId2Response(phone_number_id, from, msg_body);
-            buttonId2Response(phone_number_id, from, msg_body); 
-            buttonId2Response(phone_number_id, from, msg_body);
-            buttonId2Response(phone_number_id, from, msg_body); 
-            buttonId2Response(phone_number_id, from, msg_body);
           }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_3") {
             buttonId3Response(phone_number_id, from, msg_body);
-          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_4") {
-            buttonId4Response(phone_number_id, from, msg_body);
-          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_5") {
-            buttonId5Response(phone_number_id, from, msg_body);
-          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_6") {
-            buttonId6Response(phone_number_id, from, msg_body);
           }else{
             noresponse(phone_number_id, from, msg_body);
           }
@@ -179,14 +160,21 @@ const welcomeMessageButtons= (phone_number_id, msg_body, from) => {
                   type: "reply",
                   reply: {
                     id: "UNIQUE_BUTTON_ID_1",
-                    title: "About Location"
+                    title: "Our services"
                   }
                 },
                 {
                   type: "reply",
                   reply: {
                     id: "UNIQUE_BUTTON_ID_2",
-                    title: "About Service"
+                    title: "Our clients"
+                  }
+                },
+                {
+                  type: "reply",
+                  reply: {
+                    id: "UNIQUE_BUTTON_ID_3",
+                    title: "Contact us"
                   }
                 }
               ]
@@ -208,33 +196,54 @@ const buttonId1Response= (phone_number_id, from, msg_body) => {
       "/messages?access_token=" +
       token,
     data: {
-      messaging_product: "whatsapp",
-      to: from,
-      text: {
-        body: msg_body
-      },
-      type: "interactive",
-      interactive: {
-        type: "button",
-        body: {
-          // text: "Select the option"
-          text: msg_body
+      "messaging_product": "whatsapp",
+      "recipient_type": "individual",
+      "to": from,
+      "type": "interactive",
+      "interactive": {
+        "type": "list",
+        "header": {
+          "type": "text",
+          "text": "HEADER_TEXT"
         },
-        action: {
-          buttons: [
+        "body": {
+          "text": "BODY_TEXT"
+        },
+        "footer": {
+          "text": "FOOTER_TEXT"
+        },
+        "action": {
+          "button": "BUTTON_TEXT",
+          "sections": [
             {
-              type: "reply",
-              reply: {
-                id: "UNIQUE_BUTTON_ID_3",
-                title: "Live Location"
-              }
+              "title": "SECTION_1_TITLE",
+              "rows": [
+                {
+                  "id": "SECTION_1_ROW_1_ID",
+                  "title": "SECTION_1_ROW_1_TITLE",
+                  "description": "SECTION_1_ROW_1_DESCRIPTION"
+                },
+                {
+                  "id": "SECTION_1_ROW_2_ID",
+                  "title": "SECTION_1_ROW_2_TITLE",
+                  "description": "SECTION_1_ROW_2_DESCRIPTION"
+                }
+              ]
             },
             {
-              type: "reply",
-              reply: {
-                id: "UNIQUE_BUTTON_ID_4",
-                title: "Current Location"
-              }
+              "title": "SECTION_2_TITLE",
+              "rows": [
+                {
+                  "id": "SECTION_2_ROW_1_ID",
+                  "title": "SECTION_2_ROW_1_TITLE",
+                  "description": "SECTION_2_ROW_1_DESCRIPTION"
+                },
+                {
+                  "id": "SECTION_2_ROW_2_ID",
+                  "title": "SECTION_2_ROW_2_TITLE",
+                  "description": "SECTION_2_ROW_2_DESCRIPTION"
+                }
+              ]
             }
           ]
         }
@@ -256,34 +265,9 @@ const buttonId2Response= (phone_number_id, from, msg_body) => {
     data: {
       messaging_product: "whatsapp",
       to: from,
-      text: {
-        body: msg_body
-      },
-      type: "interactive",
-      interactive: {
-        type: "button",
-        body: {
-          // text: "Select the option"
-          text: msg_body
-        },
-        action: {
-          buttons: [
-            {
-              type: "reply",
-              reply: {
-                id: "UNIQUE_BUTTON_ID_5",
-                title: "Website"
-              }
-            },
-            {
-              type: "reply",
-              reply: {
-                id: "UNIQUE_BUTTON_ID_6",
-                title: "Mobile App"
-              }
-            }
-          ]
-        }
+      type: "text",
+      text: { // the text object
+        body: "Please click on https://www.furation.tech/index.html#brandlist to see our clients"
       }
     },
     headers: { "Content-Type": "application/json" },
@@ -301,69 +285,34 @@ const buttonId3Response= (phone_number_id, from, msg_body) => {
     data: {
       messaging_product: "whatsapp",
       to: from,
-      type: "text",
-      text: { // the text object
-        body: "We will contact you regarding Live Location"
-      }
-    },
-    headers: { "Content-Type": "application/json" },
-  })
-}
-
-const buttonId4Response= (phone_number_id, from, msg_body) => {
-  axios({
-    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
-    url:
-      "https://graph.facebook.com/v12.0/" +
-      phone_number_id +
-      "/messages?access_token=" +
-      token,
-    data: {
-      messaging_product: "whatsapp",
-      to: from,
-      type: "text",
-      text: { // the text object
-        body: "We will contact you regarding Current Location"
-      }
-    },
-    headers: { "Content-Type": "application/json" },
-  })
-}
-
-const buttonId5Response= (phone_number_id, from, msg_body) => {
-  axios({
-    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
-    url:
-      "https://graph.facebook.com/v12.0/" +
-      phone_number_id +
-      "/messages?access_token=" +
-      token,
-    data: {
-      messaging_product: "whatsapp",
-      to: from,
-      type: "text",
-      text: { // the text object
-        body: "We will contact you regarding Website Service"
-      }
-    },
-    headers: { "Content-Type": "application/json" },
-  })
-}
-
-const buttonId6Response= (phone_number_id, from, msg_body) => {
-  axios({
-    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
-    url:
-      "https://graph.facebook.com/v12.0/" +
-      phone_number_id +
-      "/messages?access_token=" +
-      token,
-    data: {
-      messaging_product: "whatsapp",
-      to: from,
-      type: "text",
-      text: { // the text object
-        body: "We will contact you regarding Mobile app"
+      text: {
+        body: msg_body
+      },
+      type: "interactive",
+      interactive: {
+        type: "button",
+        body: {
+          // text: "Select the option"
+          text: msg_body
+        },
+        action: {
+          buttons: [
+            {
+              type: "reply",
+              reply: {
+                id: "UNIQUE_BUTTON_ID_4",
+                title: "Email"
+              }
+            },
+            {
+              type: "reply",
+              reply: {
+                id: "UNIQUE_BUTTON_ID_5",
+                title: "Phone"
+              }
+            }
+          ]
+        }
       }
     },
     headers: { "Content-Type": "application/json" },
