@@ -73,21 +73,58 @@ app.post("/webhook", async(req, res) => {
         reqData.entry[0].changes[0].value.messages[0] &&
         reqData.entry[0].changes[0].value.messages[0].type==="interactive" &&
         reqData.entry[0].changes[0].value.messages[0].interactive &&
+        reqData.entry[0].changes[0].value.messages[0].interactive.type==="button_reply" &&
         reqData.entry[0].changes[0].value.messages[0].interactive.button_reply &&
         reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id
       ){
-          let phone_number_id =
+        let phone_number_id =
+        reqData.entry[0].changes[0].value.metadata.phone_number_id;
+        let from = reqData.entry[0].changes[0].value.messages[0].from;// extract the phone number from the webhook payload
+        let msg_body = reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.title; // extract the message text from the webhook payload
+        console.log(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.title, "reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.title")
+
+        if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_1"){
+          buttonId1Response(phone_number_id, from, msg_body);
+        }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_2") {
+          buttonId2Response(phone_number_id, from, msg_body);
+        }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_3") {
+          buttonId3Response(phone_number_id, from, msg_body);
+        }else{
+          noresponse(phone_number_id, from, msg_body);
+        }
+        res.sendStatus(200);
+      }else if(
+        reqData.entry &&
+        reqData.entry[0].changes &&
+        reqData.entry[0].changes[0] &&
+        reqData.entry[0].changes[0].value.messages &&
+        reqData.entry[0].changes[0].value.messages[0] &&
+        reqData.entry[0].changes[0].value.messages[0].type==="interactive" &&
+        reqData.entry[0].changes[0].value.messages[0].interactive &&
+        reqData.entry[0].changes[0].value.messages[0].interactive.type==="list_reply" &&
+        reqData.entry[0].changes[0].value.messages[0].interactive.list_reply &&
+        reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id
+      ){
+        let phone_number_id =
           reqData.entry[0].changes[0].value.metadata.phone_number_id;
           let from = reqData.entry[0].changes[0].value.messages[0].from;// extract the phone number from the webhook payload
-          let msg_body = reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.title; // extract the message text from the webhook payload
-          console.log(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.title, "reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.title")
+          let msg_body = reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.title; // extract the message text from the webhook payload
+          console.log(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.title, "reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.title")
   
-          if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_1"){
-            buttonId1Response(phone_number_id, from, msg_body);
-          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_2") {
-            buttonId2Response(phone_number_id, from, msg_body);
-          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_3") {
-            buttonId3Response(phone_number_id, from, msg_body);
+          if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_1_ID"){
+            listId1Response(phone_number_id, from);
+          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_2_ID") {
+            listId2Response(phone_number_id, from);
+          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_3_ID") {
+            listId3Response(phone_number_id, from);
+          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_4_ID") {
+            listId4Response(phone_number_id, from);
+          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_5_ID") {
+            listId5Response(phone_number_id, from);
+          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_6_ID") {
+            listId6Response(phone_number_id, from);
+          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_7_ID") {
+            listId7Response(phone_number_id, from);
           }else{
             noresponse(phone_number_id, from, msg_body);
           }
@@ -204,44 +241,47 @@ const buttonId1Response= (phone_number_id, from, msg_body) => {
         "type": "list",
         "header": {
           "type": "text",
-          "text": "HEADER_TEXT"
+          "text": "OUR SERVICES"
         },
         "body": {
-          "text": "BODY_TEXT"
+          "text": "We offer expertise in cutting-edge technologies such as Machine Intelligence (MI), Artificial Intelligence (AI), and Data Engineering."
         },
         "footer": {
-          "text": "FOOTER_TEXT"
+          "text": "Our aim is to provide innovative solutions that cater to the unique needs of each client and drive their business forward."
         },
         "action": {
-          "button": "BUTTON_TEXT",
+          "button": "MENU",
           "sections": [
             {
-              "title": "SECTION_1_TITLE",
+              "title": "OUR SERVICES",
               "rows": [
                 {
-                  "id": "SECTION_1_ROW_1_ID",
-                  "title": "SECTION_1_ROW_1_TITLE",
-                  "description": "SECTION_1_ROW_1_DESCRIPTION"
+                  "id": "OUR_SERVICE_1_ID",
+                  "title": "Mobile App Development"
                 },
                 {
-                  "id": "SECTION_1_ROW_2_ID",
-                  "title": "SECTION_1_ROW_2_TITLE",
-                  "description": "SECTION_1_ROW_2_DESCRIPTION"
-                }
-              ]
-            },
-            {
-              "title": "SECTION_2_TITLE",
-              "rows": [
-                {
-                  "id": "SECTION_2_ROW_1_ID",
-                  "title": "SECTION_2_ROW_1_TITLE",
-                  "description": "SECTION_2_ROW_1_DESCRIPTION"
+                  "id": "OUR_SERVICE_2_ID",
+                  "title": "Web App Development"
                 },
                 {
-                  "id": "SECTION_2_ROW_2_ID",
-                  "title": "SECTION_2_ROW_2_TITLE",
-                  "description": "SECTION_2_ROW_2_DESCRIPTION"
+                  "id": "OUR_SERVICE_3_ID",
+                  "title": "Website Design & Development"
+                },
+                {
+                  "id": "OUR_SERVICE_4_ID",
+                  "title": "UI & UX Design"
+                },
+                {
+                  "id": "OUR_SERVICE_5_ID",
+                  "title": "Custom Software Development"
+                },
+                {
+                  "id": "OUR_SERVICE_6_ID",
+                  "title": "Team Augmentation"
+                },
+                {
+                  "id": "OUR_SERVICE_7_ID",
+                  "title": "Design & Product Strategy"
                 }
               ]
             }
@@ -353,6 +393,146 @@ const okresponse= (phone_number_id, from, msg_body) => {
       type: "text",
       text: { // the text object
         body: msg_body
+      }
+    },
+    headers: { "Content-Type": "application/json" },
+  })
+}
+
+const listId1Response= (phone_number_id, from) => {
+  axios({
+    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+    url:
+      "https://graph.facebook.com/v12.0/" +
+      phone_number_id +
+      "/messages?access_token=" +
+      token,
+    data: {
+      messaging_product: "whatsapp",
+      to: from,
+      type: "text",
+      text: { // the text object
+        body: "Thank you for your enquiry about Mobile App Development. We have received your response. Our team will contact you soon."
+      }
+    },
+    headers: { "Content-Type": "application/json" },
+  })
+}
+
+const listId2Response= (phone_number_id, from) => {
+  axios({
+    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+    url:
+      "https://graph.facebook.com/v12.0/" +
+      phone_number_id +
+      "/messages?access_token=" +
+      token,
+    data: {
+      messaging_product: "whatsapp",
+      to: from,
+      type: "text",
+      text: { // the text object
+        body: "Thank you for your enquiry about Web App Development. We have received your response. Our team will contact you soon."
+      }
+    },
+    headers: { "Content-Type": "application/json" },
+  })
+}
+
+const listId3Response= (phone_number_id, from) => {
+  axios({
+    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+    url:
+      "https://graph.facebook.com/v12.0/" +
+      phone_number_id +
+      "/messages?access_token=" +
+      token,
+    data: {
+      messaging_product: "whatsapp",
+      to: from,
+      type: "text",
+      text: { // the text object
+        body: "Thank you for your enquiry about Website Design & Development. We have received your response. Our team will contact you soon."
+      }
+    },
+    headers: { "Content-Type": "application/json" },
+  })
+}
+
+const listId4Response= (phone_number_id, from) => {
+  axios({
+    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+    url:
+      "https://graph.facebook.com/v12.0/" +
+      phone_number_id +
+      "/messages?access_token=" +
+      token,
+    data: {
+      messaging_product: "whatsapp",
+      to: from,
+      type: "text",
+      text: { // the text object
+        body: "Thank you for your enquiry about UI & UX Design. We have received your response. Our team will contact you soon."
+      }
+    },
+    headers: { "Content-Type": "application/json" },
+  })
+}
+
+const listId5Response= (phone_number_id, from) => {
+  axios({
+    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+    url:
+      "https://graph.facebook.com/v12.0/" +
+      phone_number_id +
+      "/messages?access_token=" +
+      token,
+    data: {
+      messaging_product: "whatsapp",
+      to: from,
+      type: "text",
+      text: { // the text object
+        body: "Thank you for your enquiry about Custom Software Development. We have received your response. Our team will contact you soon."
+      }
+    },
+    headers: { "Content-Type": "application/json" },
+  })
+}
+
+const listId6Response= (phone_number_id, from) => {
+  axios({
+    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+    url:
+      "https://graph.facebook.com/v12.0/" +
+      phone_number_id +
+      "/messages?access_token=" +
+      token,
+    data: {
+      messaging_product: "whatsapp",
+      to: from,
+      type: "text",
+      text: { // the text object
+        body: "Thank you for your enquiry about Team Augmentation. We have received your response. Our team will contact you soon."
+      }
+    },
+    headers: { "Content-Type": "application/json" },
+  })
+}
+
+const listId7Response= (phone_number_id, from) => {
+  axios({
+    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+    url:
+      "https://graph.facebook.com/v12.0/" +
+      phone_number_id +
+      "/messages?access_token=" +
+      token,
+    data: {
+      messaging_product: "whatsapp",
+      to: from,
+      type: "text",
+      text: { // the text object
+        body: "Thank you for your enquiry about Design & Product Strategy. We have received your response. Our team will contact you soon."
       }
     },
     headers: { "Content-Type": "application/json" },
