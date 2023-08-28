@@ -268,17 +268,17 @@ const buttonId1Response= (phone_number_id, from) => {
                   "id": "OUR_SERVICE_2_ID",
                   "title": "SECTION_1_ROW_2_TITLE",
                   "description": "SECTION_1_ROW_2_DESCRIPTION"
-                },
-                {
-                  "id": "OUR_SERVICE_3_ID",
-                  "title": "Website Design & Development",
-                  "description": "Website Design & Development"
-                },
-                {
-                  "id": "OUR_SERVICE_4_ID",
-                  "title": "UI & UX Design",
-                  "description": "UI & UX Design"
-                },
+                }
+                // {
+                //   "id": "OUR_SERVICE_3_ID",
+                //   "title": "Website Design & Development",
+                //   "description": "Website Design & Development"
+                // },
+                // {
+                //   "id": "OUR_SERVICE_4_ID",
+                //   "title": "UI & UX Design",
+                //   "description": "UI & UX Design"
+                // },
                 // {
                 //   "id": "OUR_SERVICE_5_ID",
                 //   "title": "Custom Software Development",
