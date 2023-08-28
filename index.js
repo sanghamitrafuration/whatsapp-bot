@@ -279,21 +279,21 @@ const buttonId1Response= (phone_number_id, from) => {
                   "title": "UI & UX Design",
                   "description": "UI & UX Design"
                 },
-                {
-                  "id": "OUR_SERVICE_5_ID",
-                  "title": "Custom Software Development",
-                  "description": "Custom Software Development"
-                },
-                {
-                  "id": "OUR_SERVICE_6_ID",
-                  "title": "Team Augmentation",
-                  "description": "Team Augmentation"
-                },
-                {
-                  "id": "OUR_SERVICE_7_ID",
-                  "title": "Design & Product Strategy",
-                  "description": "Design & Product Strategy"
-                }
+                // {
+                //   "id": "OUR_SERVICE_5_ID",
+                //   "title": "Custom Software Development",
+                //   "description": "Custom Software Development"
+                // },
+                // {
+                //   "id": "OUR_SERVICE_6_ID",
+                //   "title": "Team Augmentation",
+                //   "description": "Team Augmentation"
+                // },
+                // {
+                //   "id": "OUR_SERVICE_7_ID",
+                //   "title": "Design & Product Strategy",
+                //   "description": "Design & Product Strategy"
+                // }
                 // {
                 //   "id": "OUR_SERVICE_1_ID",
                 //   "title": "Mobile App Development",
