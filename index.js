@@ -245,13 +245,13 @@ const buttonId1Response= (phone_number_id, from) => {
         "type": "list",
         "header": {
           "type": "text",
-          "text": "HEADER_TEXT"
+          "text": "OUR SERVICES"
         },
         "body": {
-          "text": "BODY_TEXT"
+          "text": "We offer expertise in cutting-edge technologies such as Machine Intelligence (MI), Artificial Intelligence (AI), and Data Engineering."
         },
         "footer": {
-          "text": "FOOTER_TEXT"
+          "text": "Our aim is to provide innovative solutions that cater to the unique needs of each client and drive their business forward."
         },
         "action": {
           "button": "BUTTON_TEXT",
