@@ -197,14 +197,14 @@ const welcomeMessageButtons= (phone_number_id, msg_body, from) => {
                   type: "reply",
                   reply: {
                     id: "UNIQUE_BUTTON_ID_1",
-                    title: "Our services"
+                    title: "Our Services"
                   }
                 },
                 {
                   type: "reply",
                   reply: {
                     id: "UNIQUE_BUTTON_ID_2",
-                    title: "Our clients"
+                    title: "Our Clients"
                   }
                 },
                 {
