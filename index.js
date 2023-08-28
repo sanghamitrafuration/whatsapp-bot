@@ -191,9 +191,9 @@ const welcomeMessageButtons= (phone_number_id, msg_body, from) => {
       type: "interactive",
       interactive: {
         type: "button",
-        body: {
-          // text: "Select the option"
-          text: msg_body
+         body: {
+         // text: "Select the option"
+         text: msg_body
         },
         action: {
           buttons: [
@@ -217,7 +217,7 @@ const welcomeMessageButtons= (phone_number_id, msg_body, from) => {
                 id: "UNIQUE_BUTTON_ID_3",
                 title: "Contact Us"
               }
-            }
+            },
           ]
         }
       }
