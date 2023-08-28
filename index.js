@@ -245,54 +245,29 @@ const buttonId1Response= (phone_number_id, from) => {
         "type": "list",
         "header": {
           "type": "text",
-          "text": "OUR SERVICES"
+          "text": "HEADER_TEXT"
         },
         "body": {
-          "text": "We offer expertise in cutting-edge technologies such as Machine Intelligence (MI), Artificial Intelligence (AI), and Data Engineering."
+          "text": "BODY_TEXT"
         },
         "footer": {
-          "text": "Our aim is to provide innovative solutions that cater to the unique needs of each client and drive their business forward."
+          "text": "FOOTER_TEXT"
         },
         "action": {
-          "button": "MENU",
+          "button": "BUTTON_TEXT",
           "sections": [
             {
-              "title": "OUR SERVICES",
+              "title": "SECTION_1_TITLE",
               "rows": [
                 {
-                  "id": "OUR_SERVICE_1_ID",
-                  "title": "Mobile App Development",
-                  "description": "Mobile App Development"
+                  "id": "SECTION_1_ROW_1_ID",
+                  "title": "SECTION_1_ROW_1_TITLE",
+                  "description": "SECTION_1_ROW_1_DESCRIPTION"
                 },
                 {
-                  "id": "OUR_SERVICE_2_ID",
-                  "title": "Web App Development",
-                  "description": "Web App Development"
-                },
-                {
-                  "id": "OUR_SERVICE_3_ID",
-                  "title": "Website Design & Development",
-                  "description": "Website Design & Development"
-                },
-                {
-                  "id": "OUR_SERVICE_4_ID",
-                  "title": "UI & UX Design",
-                  "description": "UI & UX Design"
-                },
-                {
-                  "id": "OUR_SERVICE_5_ID",
-                  "title": "Custom Software Development",
-                  "description": "Custom Software Development"
-                },
-                {
-                  "id": "OUR_SERVICE_6_ID",
-                  "title": "Team Augmentation",
-                  "description": "Team Augmentation"
-                },
-                {
-                  "id": "OUR_SERVICE_7_ID",
-                  "title": "Design & Product Strategy",
-                  "description": "Design & Product Strategy"
+                  "id": "SECTION_1_ROW_2_ID",
+                  "title": "SECTION_1_ROW_2_TITLE",
+                  "description": "SECTION_1_ROW_2_DESCRIPTION"
                 }
               ]
             },
