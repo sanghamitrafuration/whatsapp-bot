@@ -262,12 +262,12 @@ const buttonId1Response= (phone_number_id, from) => {
                 {
                   "id": "OUR_SERVICE_1_ID",
                   "title": "Mobile App Development",
-                  "description":
+                  "description": "Mobile App Development"
                 },
                 {
                   "id": "OUR_SERVICE_2_ID",
                   "title": "Web App Development",
-                  "description": "Mobile App Development"
+                  "description": "Web App Development"
                 },
                 {
                   "id": "OUR_SERVICE_3_ID",
