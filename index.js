@@ -245,16 +245,16 @@ const buttonId1Response= (phone_number_id, from) => {
         "type": "list",
         "header": {
           "type": "text",
-          "text": "Our Services"
+          "text": "HEADER_TEXT"
         },
         "body": {
-          "text": "Our aim is to provide innovative solutions that cater to the unique needs of each client and drive their business forward."
+          "text": "BODY_TEXT"
         },
         "footer": {
-          "text": "We offer expertise in cutting-edge technologies such as Machine Intelligence (MI), Artificial Intelligence (AI), and Data Engineering. "
+          "text": "FOOTER_TEXT"
         },
         "action": {
-          "button": "Services",
+          "button": "BUTTON_TEXT",
           "sections": [
             {
               "title": "App Development",
