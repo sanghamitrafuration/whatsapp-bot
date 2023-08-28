@@ -257,7 +257,7 @@ const buttonId1Response= (phone_number_id, from) => {
           "button": "BUTTON_TEXT",
           "sections": [
             {
-              "title": "App Development",
+              "title": "SECTION_1_TITLE",
               "rows": [
                 {
                   "id": "OUR_SERVICE_1_ID",
@@ -270,7 +270,7 @@ const buttonId1Response= (phone_number_id, from) => {
               ]
             },
             {
-              "title": "Designs",
+              "title": "SECTION_2_TITLE",
               "rows": [
                 {
                   "id": "OUR_SERVICE_3_ID",
@@ -283,7 +283,7 @@ const buttonId1Response= (phone_number_id, from) => {
               ]
             },
             {
-              "title": "Software and Teams",
+              "title": "SECTION_2_TITLE",
               "rows": [
                 {
                   "id": "OUR_SERVICE_5_ID",
@@ -296,7 +296,7 @@ const buttonId1Response= (phone_number_id, from) => {
               ]
             },
             {
-              "title": "Designs & Statergy",
+              "title": "SECTION_2_TITLE",
               "rows": [
                 {
                   "id": "OUR_SERVICE_7_ID",
