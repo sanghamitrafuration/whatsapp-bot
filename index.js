@@ -55,7 +55,6 @@ app.post("/webhook", async(req, res) => {
         console.log(reqData.entry[0].changes[0].value.messages[0], "body.entry[0].changes[0].value.messages[0]")
         if(msg_body=="Hi" || msg_body=="hi" || msg_body=="Hey" || msg_body=="hey" || msg_body=="Hello" || msg_body=="hello"){
           msg_body="Welcome to *Furation tech Solutions* . *Technology that drives your business* . We specialize in providing comprehensive solutions in Blockchain and Human Resource Management (HRM), Customer Relationship Management (CRM), Enterprise Resource Planning (ERP), and custom E-commerce solutions."
-          console.log("000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000")
           welcomeMessageButtons(phone_number_id, msg_body, from);
         }
         else if(msg_body=="Ok" || msg_body=="ok" || msg_body=="thanks"){
@@ -84,19 +83,19 @@ app.post("/webhook", async(req, res) => {
         let msg_body = reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.title; // extract the message text from the webhook payload
         console.log(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.title, "reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.title")
 
-        if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_1"){
-          buttonId1Response(phone_number_id, from);
-        }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_2") {
-          buttonId2Response(phone_number_id, from, msg_body);
-        }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_3") {
-          buttonId3Response(phone_number_id, from, msg_body);
-        }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_4") {
-          buttonId4Response(phone_number_id, from);
-        }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_5") {
-          buttonId5Response(phone_number_id, from);
-        }else{
-          noresponse(phone_number_id, from, msg_body);
-        }
+        // if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_1"){
+        //   buttonId1Response(phone_number_id, from);
+        // }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_2") {
+        //   buttonId2Response(phone_number_id, from, msg_body);
+        // }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_3") {
+        //   buttonId3Response(phone_number_id, from, msg_body);
+        // }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_4") {
+        //   buttonId4Response(phone_number_id, from);
+        // }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_5") {
+        //   buttonId5Response(phone_number_id, from);
+        // }else{
+        //   noresponse(phone_number_id, from, msg_body);
+        // }
         res.sendStatus(200);
       }else if(
         reqData.entry &&
@@ -116,23 +115,23 @@ app.post("/webhook", async(req, res) => {
           let msg_body = reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.title; // extract the message text from the webhook payload
           console.log(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.title, "reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.title")
   
-          if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_1_ID"){
-            listId1Response(phone_number_id, from);
-          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_2_ID") {
-            listId2Response(phone_number_id, from);
-          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_3_ID") {
-            listId3Response(phone_number_id, from);
-          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_4_ID") {
-            listId4Response(phone_number_id, from);
-          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_5_ID") {
-            listId5Response(phone_number_id, from);
-          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_6_ID") {
-            listId6Response(phone_number_id, from);
-          }else if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_7_ID") {
-            listId7Response(phone_number_id, from);
-          }else{
-            noresponse(phone_number_id, from, msg_body);
-          }
+          // if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_1_ID"){
+          //   listId1Response(phone_number_id, from);
+          // }else if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_2_ID") {
+          //   listId2Response(phone_number_id, from);
+          // }else if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_3_ID") {
+          //   listId3Response(phone_number_id, from);
+          // }else if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_4_ID") {
+          //   listId4Response(phone_number_id, from);
+          // }else if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_5_ID") {
+          //   listId5Response(phone_number_id, from);
+          // }else if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_6_ID") {
+          //   listId6Response(phone_number_id, from);
+          // }else if(reqData.entry[0].changes[0].value.messages[0].interactive.list_reply.id==="OUR_SERVICE_7_ID") {
+          //   listId7Response(phone_number_id, from);
+          // }else{
+          //   noresponse(phone_number_id, from, msg_body);
+          // }
           res.sendStatus(200);
       }
      }
