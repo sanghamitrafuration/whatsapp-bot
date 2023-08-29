@@ -309,11 +309,6 @@ const buttonId1Response= (phone_number_id, from) => {
                   "id": "SECTION_4_ROW_1_ID",
                   "title": "SECTION_4_ROW_1_TITLE",
                   "description": "SECTION_4_ROW_1_DESCRIPTION"
-                },
-                {
-                  "id": "SECTION_4_ROW_2_ID",
-                  "title": "SECTION_4_ROW_2_TITLE",
-                  "description": "SECTION_4_ROW_2_DESCRIPTION"
                 }
               ]
             }
