@@ -284,11 +284,11 @@ const buttonId1Response= (phone_number_id, from) => {
               ]
             },
             {
-              "title": "",
+              "title": "SECTION_3_TITLE",
               "rows": [
                 {
                   "id": "OUR_SERVICE_5_ID",
-                  "title": "SECTION_3_ROW_1_TITLE"
+                  "title": "Custom Software Development"
                 },
                 {
                   "id": "OUR_SERVICE_6_ID",
@@ -297,7 +297,7 @@ const buttonId1Response= (phone_number_id, from) => {
               ]
             },
             {
-              "title": "",
+              "title": "SECTION_4_TITLE",
               "rows": [
                 {
                   "id": "OUR_SERVICE_7_ID",
