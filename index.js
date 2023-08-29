@@ -258,7 +258,7 @@ const buttonId1Response= (phone_number_id, from) => {
           "button": "Services",
           "sections": [
             {
-              "title": "App Development",
+              "title": "SECTION_1_TITLE",
               "rows": [
                 {
                   "id": "OUR_SERVICE_1_ID",
@@ -266,42 +266,42 @@ const buttonId1Response= (phone_number_id, from) => {
                 },
                 {
                   "id": "OUR_SERVICE_2_ID",
-                  "title": "Web App Development"
+                  "title": "SECTION_1_ROW_2_TITLE"
                 }
               ]
             },
             {
-              "title": "Designs",
+              "title": "SECTION_2_TITLE",
               "rows": [
                 {
                   "id": "OUR_SERVICE_3_ID",
-                  "title": "Website Design & Development"
+                  "title": "SECTION_2_ROW_1_TITLE"
                 },
                 {
                   "id": "OUR_SERVICE_4_ID",
-                  "title": "UI & UX Design"
+                  "title": "SECTION_2_ROW_2_TITLE"
                 }
               ]
             },
             {
-              "title": "Development & Team",
+              "title": "SECTION_3_TITLE",
               "rows": [
                 {
                   "id": "OUR_SERVICE_5_ID",
-                  "title": "Custom Software Development"
+                  "title": "SECTION_3_ROW_1_TITLE"
                 },
                 {
                   "id": "OUR_SERVICE_6_ID",
-                  "title": "Team Augmentation"
+                  "title": "SECTION_3_ROW_2_TITLE"
                 }
               ]
             },
             {
-              "title": "Strategy",
+              "title": "SECTION_4_TITLE",
               "rows": [
                 {
                   "id": "OUR_SERVICE_7_ID",
-                  "title": "Design & Product Strategy"
+                  "title": "SECTION_4_ROW_1_TITLE"
                 }
               ]
             }
