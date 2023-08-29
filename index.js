@@ -377,7 +377,7 @@ const buttonId3Response= (phone_number_id, from, msg_body) => {
               type: "reply",
               reply: {
                 id: "UNIQUE_BUTTON_ID_6",
-                title: "Our Logo"
+                title: "Image"
               }
             }
           ]
@@ -444,7 +444,7 @@ const buttonId6Response= (phone_number_id, from) => {
       "to": from,
       "type": "image",
       "image": {
-        "link" : "https://www.furation.tech/ftlogo2.svg"
+        "link" : "./download (2).jpg"
       }
     },
     headers: { "Content-Type": "application/json" },
