@@ -246,10 +246,10 @@ const buttonId1Response= (phone_number_id, from) => {
         "type": "list",
         "header": {
           "type": "text",
-          "text": "HEADER_TEXT"
+          "text": "Our Services"
         },
         "body": {
-          "text": "BODY_TEXT"
+          "text": "Our aim is to provide innovative solutions that cater to the unique needs of each client and drive their business forward."
         },
         "footer": {
           "text": "FOOTER_TEXT"
