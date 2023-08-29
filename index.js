@@ -258,7 +258,7 @@ const buttonId1Response= (phone_number_id, from) => {
           "button": "Services",
           "sections": [
             {
-              "title": "SECTION_1_TITLE",
+              "title": "App Development",
               "rows": [
                 {
                   "id": "OUR_SERVICE_1_ID",
