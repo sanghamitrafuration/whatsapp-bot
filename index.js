@@ -279,7 +279,7 @@ const buttonId1Response= (phone_number_id, from) => {
                 },
                 {
                   "id": "OUR_SERVICE_4_ID",
-                  "title": "UI & UX Design"
+                  "title": "SECTION_2_ROW_2_TITLE"
                 }
               ]
             },
