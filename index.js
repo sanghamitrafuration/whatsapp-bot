@@ -269,6 +269,11 @@ const buttonId1Response= (phone_number_id, from) => {
                   "id": "SECTION_1_ROW_2_ID",
                   "title": "SECTION_1_ROW_2_TITLE",
                   "description": "SECTION_1_ROW_2_DESCRIPTION"
+                },
+                {
+                  "id": "SECTION_1_ROW_2_ID",
+                  "title": "SECTION_1_ROW_2_TITLE",
+                  "description": "SECTION_1_ROW_2_DESCRIPTION"
                 }
               ]
             },
