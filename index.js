@@ -271,7 +271,7 @@ const buttonId1Response= (phone_number_id, from) => {
               ]
             },
             {
-              "title": "Design",
+              "title": "Designs",
               "rows": [
                 {
                   "id": "OUR_SERVICE_3_ID",
@@ -292,7 +292,7 @@ const buttonId1Response= (phone_number_id, from) => {
                 },
                 {
                   "id": "OUR_SERVICE_6_ID",
-                  "title": "SECTION_3_ROW_2_TITLE"
+                  "title": "Team Augmentation"
                 }
               ]
             },
