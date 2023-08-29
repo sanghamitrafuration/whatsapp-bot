@@ -297,7 +297,7 @@ const buttonId1Response= (phone_number_id, from) => {
               ]
             },
             {
-              "title": "SECTION_4_TITLE",
+              "title": "Strategy",
               "rows": [
                 {
                   "id": "OUR_SERVICE_7_ID",
