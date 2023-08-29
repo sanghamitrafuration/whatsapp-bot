@@ -258,54 +258,64 @@ const buttonId1Response= (phone_number_id, from) => {
           "button": "Services",
           "sections": [
             {
-              "title": "App Development",
-              "rows": [
-                {
-                  "id": "OUR_SERVICE_1_ID",
-                  "title": "Mobile App Development"
-                },
-                {
-                  "id": "OUR_SERVICE_2_ID",
-                  "title": "Web App Development"
-                }
-              ]
+              "id": "OUR_SERVICE_1_ID",
+              "title": "Mobile App Development"
             },
             {
-              "title": "Designs",
-              "rows": [
-                {
-                  "id": "OUR_SERVICE_3_ID",
-                  "title": "SECTION_2_ROW_1_TITLE"
-                },
-                {
-                  "id": "OUR_SERVICE_4_ID",
-                  "title": "UI & UX Design"
-                }
-              ]
-            },
-            {
-              "title": "Development & Team",
-              "rows": [
-                {
-                  "id": "OUR_SERVICE_5_ID",
-                  "title": "SECTION_3_ROW_1_TITLE"
-                },
-                {
-                  "id": "OUR_SERVICE_6_ID",
-                  "title": "Team Augmentation"
-                }
-              ]
-            },
-            {
-              "title": "Strategy",
-              "rows": [
-                {
-                  "id": "OUR_SERVICE_7_ID",
-                  "title": "SECTION_4_ROW_1_TITLE"
-                }
-              ]
+              "id": "OUR_SERVICE_2_ID",
+              "title": "Web App Development"
             }
           ]
+          // "sections": [
+          //   {
+          //     "title": "App Development",
+          //     "rows": [
+          //       {
+          //         "id": "OUR_SERVICE_1_ID",
+          //         "title": "Mobile App Development"
+          //       },
+          //       {
+          //         "id": "OUR_SERVICE_2_ID",
+          //         "title": "Web App Development"
+          //       }
+          //     ]
+          //   },
+          //   {
+          //     "title": "Designs",
+          //     "rows": [
+          //       {
+          //         "id": "OUR_SERVICE_3_ID",
+          //         "title": "SECTION_2_ROW_1_TITLE"
+          //       },
+          //       {
+          //         "id": "OUR_SERVICE_4_ID",
+          //         "title": "UI & UX Design"
+          //       }
+          //     ]
+          //   },
+          //   {
+          //     "title": "Development & Team",
+          //     "rows": [
+          //       {
+          //         "id": "OUR_SERVICE_5_ID",
+          //         "title": "SECTION_3_ROW_1_TITLE"
+          //       },
+          //       {
+          //         "id": "OUR_SERVICE_6_ID",
+          //         "title": "Team Augmentation"
+          //       }
+          //     ]
+          //   },
+          //   {
+          //     "title": "Strategy",
+          //     "rows": [
+          //       {
+          //         "id": "OUR_SERVICE_7_ID",
+          //         "title": "SECTION_4_ROW_1_TITLE"
+          //       }
+          //     ]
+          //   }
+          // ]
         }
       }
     },
