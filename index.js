@@ -288,7 +288,7 @@ const buttonId1Response= (phone_number_id, from) => {
               "rows": [
                 {
                   "id": "OUR_SERVICE_5_ID",
-                  "title": "SECTION_3_ROW_1_TITLE"
+                  "title": "Custom Software Development"
                 },
                 {
                   "id": "OUR_SERVICE_6_ID",
@@ -342,7 +342,7 @@ const buttonId3Response= (phone_number_id, from, msg_body) => {
       phone_number_id +
       "/messages?access_token=" +
       token,
-    data: {
+    data: { 
       messaging_product: "whatsapp",
       to: from,
       text: {
