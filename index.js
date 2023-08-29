@@ -23,8 +23,6 @@ const axios = require("axios").default;
 const  app = express().use(body_parser.json()); // creates express http server
 const PORT= process.env.PORT || 1337;
 
-import image from "./download (2).jpg"
-
 
 
 // Sets server port and logs message on success
@@ -446,7 +444,7 @@ const buttonId6Response= (phone_number_id, from) => {
       "to": from,
       "type": "image",
       "image": {
-        "link" : image
+        "link" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxXnC3fwMwkbIt3ejGRIw3NmbDyUtgS5g2jA&usqp=CAU"
       }
     },
     headers: { "Content-Type": "application/json" },
