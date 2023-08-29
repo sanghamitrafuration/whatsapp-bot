@@ -262,13 +262,11 @@ const buttonId1Response= (phone_number_id, from) => {
               "rows": [
                 {
                   "id": "SECTION_1_ROW_1_ID",
-                  "title": "SECTION_1_ROW_1_TITLE",
-                  "description": "SECTION_1_ROW_1_DESCRIPTION"
+                  "title": "SECTION_1_ROW_1_TITLE"
                 },
                 {
                   "id": "SECTION_1_ROW_2_ID",
-                  "title": "SECTION_1_ROW_2_TITLE",
-                  "description": "SECTION_1_ROW_2_DESCRIPTION"
+                  "title": "SECTION_1_ROW_2_TITLE"
                 }
               ]
             },
@@ -277,13 +275,11 @@ const buttonId1Response= (phone_number_id, from) => {
               "rows": [
                 {
                   "id": "SECTION_2_ROW_1_ID",
-                  "title": "SECTION_2_ROW_1_TITLE",
-                  "description": "SECTION_2_ROW_1_DESCRIPTION"
+                  "title": "SECTION_2_ROW_1_TITLE"
                 },
                 {
                   "id": "SECTION_2_ROW_2_ID",
-                  "title": "SECTION_2_ROW_2_TITLE",
-                  "description": "SECTION_2_ROW_2_DESCRIPTION"
+                  "title": "SECTION_2_ROW_2_TITLE"
                 }
               ]
             },
@@ -292,13 +288,11 @@ const buttonId1Response= (phone_number_id, from) => {
               "rows": [
                 {
                   "id": "SECTION_3_ROW_1_ID",
-                  "title": "SECTION_3_ROW_1_TITLE",
-                  "description": "SECTION_3_ROW_1_DESCRIPTION"
+                  "title": "SECTION_3_ROW_1_TITLE"
                 },
                 {
                   "id": "SECTION_3_ROW_2_ID",
-                  "title": "SECTION_3_ROW_2_TITLE",
-                  "description": "SECTION_3_ROW_2_DESCRIPTION"
+                  "title": "SECTION_3_ROW_2_TITLE"
                 }
               ]
             },
@@ -307,8 +301,7 @@ const buttonId1Response= (phone_number_id, from) => {
               "rows": [
                 {
                   "id": "SECTION_4_ROW_1_ID",
-                  "title": "SECTION_4_ROW_1_TITLE",
-                  "description": "SECTION_4_ROW_1_DESCRIPTION"
+                  "title": "SECTION_4_ROW_1_TITLE"
                 }
               ]
             }
