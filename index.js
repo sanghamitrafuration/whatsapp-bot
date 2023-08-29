@@ -252,10 +252,10 @@ const buttonId1Response= (phone_number_id, from) => {
           "text": "Our aim is to provide innovative solutions that cater to the unique needs of each client and drive their business forward."
         },
         "footer": {
-          "text": "FOOTER_TEXT"
+          "text": "Click the button to explore more"
         },
         "action": {
-          "button": "BUTTON_TEXT",
+          "button": "Services",
           "sections": [
             {
               "title": "SECTION_1_TITLE",
