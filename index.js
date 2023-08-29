@@ -266,7 +266,7 @@ const buttonId1Response= (phone_number_id, from) => {
                 },
                 {
                   "id": "OUR_SERVICE_2_ID",
-                  "title": "SECTION_1_ROW_2_TITLE"
+                  "title": "Web App Development"
                 }
               ]
             },
