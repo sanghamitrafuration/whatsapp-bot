@@ -94,6 +94,8 @@ app.post("/webhook", async(req, res) => {
           buttonId4Response(phone_number_id, from);
         }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_5") {
           buttonId5Response(phone_number_id, from);
+        }else if(reqData.entry[0].changes[0].value.messages[0].interactive.button_reply.id==="UNIQUE_BUTTON_ID_6") {
+          buttonId6Response(phone_number_id, from);
         }else{
           noresponse(phone_number_id, from);
         }
@@ -370,6 +372,13 @@ const buttonId3Response= (phone_number_id, from, msg_body) => {
                 id: "UNIQUE_BUTTON_ID_5",
                 title: "Phone"
               }
+            },
+            {
+              type: "reply",
+              reply: {
+                id: "UNIQUE_BUTTON_ID_6",
+                title: "Our Logo"
+              }
             }
           ]
         }
@@ -415,6 +424,27 @@ const buttonId5Response= (phone_number_id, from) => {
       text: { // the text object
         "preview_url": true,
         body: "Please call on +91-8879906881"
+      }
+    },
+    headers: { "Content-Type": "application/json" },
+  })
+}
+
+const buttonId6Response= (phone_number_id, from) => {
+  axios({
+    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+    url:
+      "https://graph.facebook.com/v12.0/" +
+      phone_number_id +
+      "/messages?access_token=" +
+      token,
+    data: {
+      "messaging_product": "whatsapp",
+      "recipient_type": "individual",
+      "to": from,
+      "type": "image",
+      "image": {
+        "link" : "https://www.furation.tech/ftlogo2.svg"
       }
     },
     headers: { "Content-Type": "application/json" },
