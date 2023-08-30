@@ -439,6 +439,23 @@ const buttonId6Response= (phone_number_id, from) => {
       "/messages?access_token=" +
       token,
     data: {
+      messaging_product: "whatsapp",
+      to: from,
+      type: "text",
+      text: { // the text object
+        body: "Here is the image"
+      }
+    },
+    headers: { "Content-Type": "application/json" },
+  })
+  axios({
+    method: "POST", // Required, HTTP method, a string, e.g. POST, GET
+    url:
+      "https://graph.facebook.com/v12.0/" +
+      phone_number_id +
+      "/messages?access_token=" +
+      token,
+    data: {
       "messaging_product": "whatsapp",
       "recipient_type": "individual",
       "to": from,
